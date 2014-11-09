@@ -10,8 +10,8 @@ module.exports = function(grunt) {
                 },
                 files: {
                     'angular.js': 'angular/angular.js'
-                },
-            },
+                }
+            }
 
         },
 
@@ -33,7 +33,7 @@ module.exports = function(grunt) {
                     style: 'expanded'
                 },
                 files: {                         
-                    'css/main.css': 'scss/main.scss',     
+                    'css/main.css': 'scss/main.scss'
                     }
                 }
         },
@@ -53,7 +53,7 @@ module.exports = function(grunt) {
 
 
         watch : {
-            files :'scss/*',
+            files :['scss/*', 'jade/*'],
             tasks: ['sass', 'jade']
         } 
     });
