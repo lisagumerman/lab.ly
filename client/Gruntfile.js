@@ -24,25 +24,10 @@ module.exports = function(grunt) {
                 }
         },
 
-        less : {
-            development : {
-
-            },
-            production : {
-                options : [ {
-                    paths: 'less'
-                }],
-                files : {
-                    'css/application.css' :
-                        'less/application.less'
-                }
-            }
-        },
-
 
         watch : {
-            files :'less/*',
-            tasks: ['less']
+            files :'scss/*',
+            tasks: ['sass']
         }
 
     });
