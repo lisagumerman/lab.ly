@@ -13,8 +13,12 @@ body {
     background-color:$grey; color:$almostblack; font-family: $font-b;
 }
 
+h1 {
+    font-family: $font-h;font-weight:normal;
+}
 
 
+/* DELETEME -- for Josiah's testing */
 .green {
   background-color: $green;
   font-weight:bold;
