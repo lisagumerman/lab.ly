@@ -13,6 +13,17 @@ module.exports = function(grunt) {
             }
         },
 
+        sass: {                              
+            dist: {                            
+                options: {                      
+                    style: 'expanded'
+                },
+                files: {                         
+                    'css/main.css': 'scss/main.scss',     
+                    }
+                }
+        },
+
         less : {
             development : {
 
@@ -43,5 +54,5 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-compress");
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks("grunt-contrib-less");
+    grunt.loadNpmTasks("grunt-contrib-sass");
 };
