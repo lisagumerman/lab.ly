@@ -24,12 +24,24 @@ module.exports = function(grunt) {
                 }
         },
 
+        jade: {
+            compile: {
+                options: {
+                    data: {
+                        debug: false
+                    }
+            },
+            files: {
+                    "html/application.html": ["jade/**/*.jade"]
+                }
+            }
+        },
+
 
         watch : {
             files :'scss/*',
-            tasks: ['sass']
-        }
-
+            tasks: ['sass', 'jade']
+        } 
     });
 
     grunt.loadNpmTasks("grunt-bowercopy");
@@ -39,5 +51,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks("grunt-contrib-compress");
     grunt.loadNpmTasks('grunt-bower-task');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jade');
     grunt.loadNpmTasks("grunt-contrib-sass");
 };
