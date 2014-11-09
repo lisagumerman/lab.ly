@@ -5,9 +5,16 @@ html(lang="en")
     style
       include ../css/main.css
 
-    script
+    script(src='../js/libs/require.js', data-main='../js/require-config.js')
+
+
+
 
   body
+    div#main
+      div(ng-controller="LablyMain")
+          button(ng-click="sayHello()") {{whatever}}
+
     div.green
 
        | hello  how are you?

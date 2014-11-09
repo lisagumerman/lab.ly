@@ -9,7 +9,10 @@ module.exports = function(grunt) {
                     destPrefix: 'js/libs'
                 },
                 files: {
-                    'angular.js': 'angular/angular.js'
+                    'angular.js': 'angular/angular.js',
+                    'require.js': 'requirejs/require.js',
+                    'ready.js' : 'domready/ready.js',
+                    'jquery.js' : 'jquery/dist/jquery.js'
                 }
             }
 
