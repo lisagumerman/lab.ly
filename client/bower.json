@@ -1,0 +1,9 @@
+{
+  "name": "digitype",
+  "version": "0.0.1",
+  "dependencies": {
+    "metro-ui-css": "~2.0.23",
+    "jquery-ui": "~1.11.1"
+  },
+  "devDependencies": {}
+}
