@@ -24,42 +24,16 @@ define([
     'lib/ready/ready',
     'jquery',
     'angular',
+    'directives/directives',
     'controllers/controllers'
-], function(ready, $, angular, controllers) {
+], function(ready,
+            $, angular,
+            directives, controllers) {
 
-
-
-
-
-//    var Controllers = angular.module('Lably.Controllers', []);
-//    Controllers.controller('MyController', ['$rootScope', '$scope',
-//        function($rootScope, $scope){
-//
-//        $scope.person = {
-//            firstName: "Lisa",
-//            lastName: "Zoomer childe"
-//        };
-//
-//        $scope.saySomething = function() {
-//            $rootScope.$broadcast('hello', 'Hi, controller 2!')
-//        }
-//
-//
-//    }]);
-//
-//    Controllers.controller('MyController2', ['$scope', function($scope){
-//
-//        $scope.person = {
-//            firstName: "Joshuaesta",
-//            lastName: "Not zoomer child :("
-//        };
-//        $scope.$on('hello', function(e, args){
-//            $scope.person.lastName = args;
-//
-//        });
-//    }]);
-
-    var Lably = angular.module('Lably', ['Lably.Controllers']);
+    var Lably = angular.module('Lably', [
+        'Lably.Controllers',
+        'Lably.Directives'
+    ]);
 
     ready(function() {
         var element = $('#application-main');
