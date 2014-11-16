@@ -1,12 +1,26 @@
 {
-  "name": "lab.ly",
-  "version": "0.0.1",
+  "name": "lably-client",
+  "version": "0.0.0",
+  "homepage": "https://github.com/lisagumerman/lab.ly",
+  "authors": [
+    "haswell <lisa.gumerman@gmail.com>"
+  ],
+  "description": "Next-generation data visualization tool",
+  "main": "bower.json",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
   "dependencies": {
     "angular": "~1.3.2",
+    "jquery": "~2.1.1",
     "requirejs": "~2.1.15",
-    "jquery": "~2.1.1"
-  },
-  "devDependencies": {
-    "grunt-contrib-sass": "~0.8.1"
+    "domready": "~1.0.7",
+    "jquery-ui": "~1.11.2"
   }
 }
