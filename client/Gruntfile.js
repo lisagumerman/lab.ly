@@ -63,6 +63,7 @@ module.exports = function(grunt) {
                     destPrefix: 'src/main/js/lib'
                 },
                 files: {
+                    'dropzone/dropzone.js' : 'dropzone/downloads/dropzone-amd-module.js',
                     'angular/angular.js' : 'angular/angular.js',
                     'require/require.js' : 'requirejs/require.js',
                     'jquery/jquery.js' : 'jquery/dist/jquery.js',

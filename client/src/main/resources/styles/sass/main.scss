@@ -21,11 +21,27 @@ html, body {
 }
 #application-main {
   @include expand;
+  overflow:hidden;
+}
+
+.upload-file {
+  border: 3px dashed #929292;
+
+  width:50%;
+  height:50%;
+  margin:auto;
+
+  position:absolute;
+  top:0; left:0; bottom:0; right:0;
 }
 
 .workspace {
   @include gridify(#e2e2e2);
   @include expand;
+}
+
+.workspace-content {
+  position:relative;
 }
 
 .header {
@@ -51,4 +67,11 @@ html, body {
 }
 
 
+.draggable {
+  width:100px;
+  height:100px;
+  background-color:red;
+
+
+}
 

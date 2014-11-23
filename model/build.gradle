@@ -1,0 +1,5 @@
+dependencies {
+    compile "com.datastax.cassandra:cassandra-driver-core:$cassandraDriverVersion"
+    testCompile "org.cassandraunit:cassandra-unit:$cassandraUnitVersion"
+//    compile "com.datastax.spark:spark-cassandra-connector:$cassandraSparkVersion"
+}

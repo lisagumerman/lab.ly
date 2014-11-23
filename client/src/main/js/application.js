@@ -5,12 +5,17 @@ require.config({
     paths: {
         jquery: 'lib/jquery/jquery',
         angular: 'lib/angular/angular',
+        dropzone: 'lib/dropzone/dropzone',
         'jquery-ui': 'lib/jquery/ui'
     },
 
     shim: {
         'angular' : {
             exports: 'angular',
+            deps: ['jquery']
+        },
+        'dropzone' : {
+            exports: 'dropzone',
             deps: ['jquery']
         }
     }
