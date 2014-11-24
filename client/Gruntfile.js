@@ -90,7 +90,7 @@ module.exports = function(grunt) {
             }
         },
         watch: {
-            files: ['src/main/resources/styles/sass/*'],
+            files: ['src/main/resources/styles/sass/**/*'],
             tasks: ['sass']
         }
     });
