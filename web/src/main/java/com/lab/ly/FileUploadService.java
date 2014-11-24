@@ -27,7 +27,7 @@ public class FileUploadService {
     @POST
     @Path("/upload")
     @Consumes("multipart/form-data")
-    public Response uploadFile(@MultipartForm UploadedFile form) throws UnsupportedEncodingException {
+    public UpuploadFile(@MultipartForm UploadedFile form) throws UnsupportedEncodingException {
         return Response
                 .status(Response.Status.OK)
                 .entity("Got a file :)")

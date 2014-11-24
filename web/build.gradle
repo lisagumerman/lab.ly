@@ -32,7 +32,9 @@ dependencies {
     provided  'org.jboss.resteasy:resteasy-spring:3.0.10.Final'
     provided 'org.jboss.resteasy:resteasy-cdi:3.0.10.Final'
     provided 'org.jboss.resteasy:resteasy-multipart-provider:3.0.10.Final'
+    provided 'org.jboss.resteasy:resteasy-jaxb-provider:3.0.10.Final'
     provided 'javax.inject:javax.inject:1'
+    compile project(":common")
 }
 
 
