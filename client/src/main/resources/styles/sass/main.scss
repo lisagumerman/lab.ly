@@ -1,18 +1,10 @@
 @import "imports.scss";
+@import "colors";
 @import "mixins/transformations.scss";
 
-html, body {
-  width:100%;
-  height:100%;
-  padding:0px;
-  margin:0px;
-  overflow:hidden;
-    font-family:'News Cycle', sans-serif;
-}
+@mixin border {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
 
-$gridsize: 100px;
-$navwidth: $gridsize*2;
-
+@mixin cleanup { margin:0; padding:0; }
 
 @mixin expand {
   position:absolute;
@@ -23,9 +15,17 @@ $navwidth: $gridsize*2;
   overflow:auto;
 }
 
-@mixin border {-moz-box-sizing: border-box;-webkit-box-sizing: border-box;box-sizing: border-box;}
+html, body {
+  width:100%;
+  height:100%;
+  overflow:hidden;
+    font-family:'News Cycle', sans-serif;
+    background-color:$white;
+    @include cleanup;
+}
 
-@mixin cleanup { margin:0; padding:0; }
+$gridsize: 100px;
+$navwidth: $gridsize*2;
 
 #application-main {
   @include expand;
@@ -40,10 +40,9 @@ $navwidth: $gridsize*2;
 }
 
 .workspace {
-  @include gridify($white, $greenish);
+  @include gridify($white, $greenish, $gridsize, 1px);
   @include expand;
-      top:$navwidth/2;
-  left:$navwidth;
+top:$navwidth/2; left:$navwidth;
 }
 
 header {
@@ -74,7 +73,11 @@ nav#leftnav {
     background: $black url('../../images/blocks.png') top left no-repeat;
     color:$white;
     height:100%;
-  @include border
+    padding:$navwidth+5px 10px 10px;
+  @include border;
+      
+      ul { list-style-type: none; @include cleanup;}
+    a {color:$white !important;text-decoration: none;}
 }
 
 

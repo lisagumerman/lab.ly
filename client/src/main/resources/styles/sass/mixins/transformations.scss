@@ -1,29 +1,18 @@
-@mixin gridify($color) {
+@mixin gridify($bgcolor, $linecolor, $gridsize, $linewidth) {
 
-  background-color: $color;
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  background-color: $bgcolor;
+  background-size:  $gridsize/4 $gridsize/4, $gridsize/4 $gridsize/4;
 
+  background-image: -webkit-linear-gradient($linecolor $linewidth, transparent $linewidth),
+  -webkit-linear-gradient(0, $linecolor $linewidth, transparent $linewidth);
 
-  background-image: -webkit-linear-gradient(white 2px, transparent 2px),
-  -webkit-linear-gradient(0, white 2px, transparent 2px),
-  -webkit-linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
-  -webkit-linear-gradient(0, rgba(255,255,255,.3) 1px, transparent 1px);
+  background-image: -moz-linear-gradient($linecolor $linewidth, transparent $linewidth),
+  -moz-linear-gradient(0, $linecolor $linewidth, transparent $linewidth);
 
-  background-image: -moz-linear-gradient(white 2px, transparent 2px),
-  -moz-linear-gradient(0, white 2px, transparent 2px),
-  -moz-linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
-  -moz-linear-gradient(0, rgba(255,255,255,.3) 1px, transparent 1px);
+  background-image: linear-gradient($linecolor $linewidth, transparent $linewidth),
+  linear-gradient(90deg, $linecolor $linewidth, transparent $linewidth);
 
-  background-image: linear-gradient(white 2px, transparent 2px),
-  linear-gradient(90deg, white 2px, transparent 2px),
-  linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px),
-  linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px);
-
-  -pie-background: linear-gradient(white 2px, transparent 2px) -2px -2px / 100px,
-  linear-gradient(90deg, white 2px, transparent 2px) -2px -2px / 100px,
-  linear-gradient(rgba(255,255,255,.3) 1px, transparent 1px) -1px -1px / 20px,
-  linear-gradient(90deg, rgba(255,255,255,.3) 1px, transparent 1px) -1px -1px / 20px, #269;
+  -pie-background: linear-gradient($linecolor $linewidth, transparent $linewidth) -$linewidth -$linewidth / $gridsize,
+  linear-gradient(90deg, $linecolor $linewidth, transparent $linewidth) -$linewidth -$linewidth / $gridsize;
   behavior: url(/pie/PIE.htc);
-
 }
