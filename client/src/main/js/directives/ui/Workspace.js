@@ -13,7 +13,7 @@ define([
             link:function(scope, element, attributes) {
                 var dz = $(element).find('.upload-file:first')[0]
                 $(dz).dropzone({
-                    url: 'upload'
+                    url: 'http://localhost:8080/web/lably/upload/upload'
                 });
             }
         };

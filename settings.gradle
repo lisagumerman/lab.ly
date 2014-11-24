@@ -1,0 +1,8 @@
+include (
+        'common',
+        'model',
+        'model:model-api',
+        'model:model-core',
+        'client',
+        'web'
+)
