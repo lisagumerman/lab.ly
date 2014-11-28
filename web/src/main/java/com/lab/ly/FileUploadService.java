@@ -2,6 +2,7 @@ package com.lab.ly;
 
 
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
+import sun.org.mozilla.javascript.annotations.JSGetter;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -24,14 +25,13 @@ public class FileUploadService {
 
     }
 
+
+
     @POST
     @Path("/upload")
     @Consumes("multipart/form-data")
-    public Response uploadFile(@MultipartForm UploadedFile form) throws UnsupportedEncodingException {
-        return Response
-                .status(Response.Status.OK)
-                .entity("Got a file :)")
-                .build();
+    public String uploadFile(@MultipartForm UploadedFile form) throws UnsupportedEncodingException {
+        throw new RuntimeException(new DelimitedFile(new String(form.getData(), "UTF-8")).contents.toString());
     }
 
 }
