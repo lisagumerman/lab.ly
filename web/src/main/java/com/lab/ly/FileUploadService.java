@@ -1,8 +1,11 @@
 package com.lab.ly;
 
 
+import com.lab.ly.common.DataSet;
+import com.lab.ly.common.MemoryMappedSerializableDataSet;
+import com.lab.ly.formats.ds.DelimitedFileParser;
+import com.lab.ly.formats.ds.InMemoryDelimitedFileParser;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
-import sun.org.mozilla.javascript.annotations.JSGetter;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
@@ -29,9 +32,19 @@ public class FileUploadService {
 
     @POST
     @Path("/upload")
+    @Produces("application/xml")
     @Consumes("multipart/form-data")
-    public String uploadFile(@MultipartForm UploadedFile form) throws UnsupportedEncodingException {
-        throw new RuntimeException(new DelimitedFile(new String(form.getData(), "UTF-8")).contents.toString());
+    public DataSet uploadFile(@MultipartForm UploadedFile form) throws UnsupportedEncodingException {
+        final String result = new String(form.getData(), "UTF-8");
+        return new InMemoryDelimitedFileParser().parse(result);
+    }
+
+    @GET
+    @Path("file")
+    @Produces("application/xml")
+    public DelimitedFile getFile() {
+        final String result = "hello,world\nhow are,you?";
+        return new DelimitedFile(result);
     }
 
 }

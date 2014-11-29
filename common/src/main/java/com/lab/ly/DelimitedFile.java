@@ -28,6 +28,10 @@ public class DelimitedFile {
         }
     }
 
+    public DelimitedFile() {
+        this("hello,world\nhow are you?,I'm fine");
+    }
+
     final List<String> extractFirst(String[] fst) {
         String[] headerLine = fst[0].split(",");
         return Arrays.asList(headerLine);
