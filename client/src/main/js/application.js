@@ -6,13 +6,17 @@ require.config({
         jquery: 'lib/jquery/jquery',
         angular: 'lib/angular/angular',
         dropzone: 'lib/dropzone/dropzone',
-        'jquery-ui': 'lib/jquery/ui'
+        'jquery-ui': 'lib/jquery/ui',
+        interact: 'lib/interact/interact'
     },
 
     shim: {
         'angular' : {
             exports: 'angular',
             deps: ['jquery']
+        },
+        'interact' : {
+            exports: 'interact'
         },
         'dropzone' : {
             exports: 'dropzone',
