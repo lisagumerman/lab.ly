@@ -51,7 +51,7 @@ header {
     position:absolute;
     padding:10px 20px;
     @include border;
-    
+
     h1 {
         font-size: 50pt;
         line-height: 1em;
@@ -59,10 +59,10 @@ header {
         display:inline-block;
         font-family: Baumans;
         @include cleanup;
-        
+
         .dot {color:$green;}
     }
-    
+
     #tagline {font-weight:bold;}
 }
 
@@ -75,7 +75,7 @@ nav#leftnav {
     height:100%;
     padding:$navwidth+5px 10px 10px;
   @include border;
-      
+
       ul { list-style-type: none; @include cleanup;}
     a {color:$white !important;text-decoration: none;}
 }
