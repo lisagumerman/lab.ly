@@ -7,6 +7,7 @@ import com.lab.ly.formats.ds.DelimitedFileParser;
 import com.lab.ly.formats.ds.InMemoryDelimitedFileParser;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
+import javax.inject.Singleton;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,6 +20,7 @@ import java.util.Arrays;
  * Time: 3:01 PM
  */
 @Path("upload")
+@Singleton
 public class FileUploadService {
 
 
