@@ -11,6 +11,6 @@ subprojects {
     apply plugin: 'java'
 
     dependencies {
-        compile "junit:junit:$junitVersion"
+        testCompile "junit:junit:$junitVersion"
     }
 }

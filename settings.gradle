@@ -1,5 +1,6 @@
 include (
         'common',
+        'persist',
         'model',
         'model:model-api',
         'model:model-core',
