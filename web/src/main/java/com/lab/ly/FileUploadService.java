@@ -8,6 +8,7 @@ import com.lab.ly.formats.ds.InMemoryDelimitedFileParser;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
@@ -20,6 +21,9 @@ import java.util.Arrays;
 @Path("upload")
 public class FileUploadService {
 
+
+    DataSet dataset;
+
     @GET
     @Path("hello/{name}")
     @Produces("text/plain")
@@ -28,15 +32,22 @@ public class FileUploadService {
 
     }
 
+    @GET
+    @Path("dataset")
+    @Produces(MediaType.APPLICATION_XML)
+    public DataSet getDataset() {
+        System.out.println(dataset);
+        return dataset;
+    }
 
 
     @POST
     @Path("/upload")
-    @Produces("application/xml")
     @Consumes("multipart/form-data")
-    public DataSet uploadFile(@MultipartForm UploadedFile form) throws UnsupportedEncodingException {
+    public String uploadFile(@MultipartForm UploadedFile form) throws UnsupportedEncodingException {
         final String result = new String(form.getData(), "UTF-8");
-        return new InMemoryDelimitedFileParser().parse(result);
+        dataset = new InMemoryDelimitedFileParser().parse(result);
+        return "Uploaded :)";
     }
 
     @GET

@@ -68,7 +68,8 @@ module.exports = function(grunt) {
                     'require/require.js' : 'requirejs/require.js',
                     'jquery/jquery.js' : 'jquery/dist/jquery.js',
                     'ready/ready.js' : 'domready/ready.js',
-                    'jquery/ui' : 'jquery-ui/ui/*.js'
+                    'jquery/ui' : 'jquery-ui/ui/*.js',
+                    'interact/interact.js' : 'interact/interact.js'
                 }
             },
             styles: {
