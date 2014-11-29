@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-cargo-plugin:2.0.2'
+    }
+}
+
+apply plugin: 'com.bmuschko.cargo'
+apply plugin: 'war'
+apply plugin: 'java'
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+configurations {
+    provided
+}
+
+dependencies {
+    compile 'org.springframework:spring-context:4.1.2.RELEASE'
+    compile 'org.springframework:spring-beans:4.1.2.RELEASE'
+    providedCompile 'org.jboss.resteasy:resteasy-jaxrs:3.0.10.Final'
+//    compile 'org.jboss.resteasy:resteasy-spring:3.0.10.Final'
+    providedCompile 'org.jboss.resteasy:resteasy-cdi:3.0.10.Final'
+    providedCompile 'org.jboss.resteasy:resteasy-multipart-provider:3.0.10.Final'
+    compile 'org.jboss.resteasy:resteasy-jaxb-provider:3.0.10.Final'
+//    compile 'com.sun.xml.bind:jaxb-core:2.2.7'
+
+    compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.2'
+    compile 'javax.inject:javax.inject:1'
+    compile project(":common")
+}
+
+sourceSets {
+    main.compileClasspath += configurations.provided
+    test.compileClasspath += configurations.provided
+    test.runtimeClasspath += configurations.provided
+}
+
+
+cargo {
+    containerId = 'wildfly8x'
+    local {
+        homeDir = file('/home/haswell/dev/tools/webservers/wildfly/8.2.0.Final')
+    }
+}
