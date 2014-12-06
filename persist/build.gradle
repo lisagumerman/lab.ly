@@ -1,0 +1,6 @@
+
+
+dependencies {
+    compile project(":model:model-api")
+    compile project(":model:model-core")
+}

@@ -2,16 +2,12 @@ package com.lab.ly;
 
 
 import com.lab.ly.common.DataSet;
-import com.lab.ly.common.MemoryMappedSerializableDataSet;
-import com.lab.ly.formats.ds.DelimitedFileParser;
 import com.lab.ly.formats.ds.InMemoryDelimitedFileParser;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 
 /**
  * User: haswell
@@ -36,7 +32,7 @@ public class FileUploadService {
     @Path("dataset")
     @Produces(MediaType.APPLICATION_XML)
     public DataSet getDataset() {
-        System.out.println(dataset);
+        System.out.println(test);
         return dataset;
     }
 
