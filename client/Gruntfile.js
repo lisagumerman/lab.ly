@@ -71,12 +71,8 @@ module.exports = function(grunt) {
                     'jquery/ui' : 'jquery-ui/ui/*.js',
                     'interact/interact.js' : 'interact/interact.js'
                 }
-            },
-            styles: {
-                options: {
-                    destPrefix: 'src/main/resources/styles/sass/libs'
-                }
             }
+       
         },
 
         sass: {
