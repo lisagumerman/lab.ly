@@ -1,4 +1,5 @@
 include (
+	'shared-config',
         'common',
         'persist',
         'model',

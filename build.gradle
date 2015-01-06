@@ -1,16 +1,36 @@
+
+
 allprojects {
 
-    apply plugin: 'idea'
     repositories {
         mavenCentral()
         jcenter()
     }
+
+
+
 }
 
 subprojects {
     apply plugin: 'java'
 
+    configurations {
+        sharedConfiguration
+    }
+
+    task sharedConfiguration(type:Copy) {
+        from {
+            project.configurations.sharedConfiguration.collect { zipTree(it)}
+        }
+        into("${project.buildDir}/classes/main")
+    }
+
+    build.mustRunAfter sharedConfiguration
+    defaultTasks = ['clean', 'sharedConfiguration', 'build']
+
+
     dependencies {
         testCompile "junit:junit:$junitVersion"
     }
+
 }

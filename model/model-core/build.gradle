@@ -1,5 +1,14 @@
+
 dependencies {
+
+    sharedConfiguration project(":shared-config")
+
+    compile project(":model:model-api")
     compile "com.datastax.cassandra:cassandra-driver-core:$cassandraDriverVersion"
     testCompile "org.cassandraunit:cassandra-unit:$cassandraUnitVersion"
+    compile "org.hibernate:hibernate-entitymanager:4.3.7.Final"
+    compile "javax.inject:javax.inject:1"
 //    compile "com.datastax.spark:spark-cassandra-connector:$cassandraSparkVersion"
 }
+
+

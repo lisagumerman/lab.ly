@@ -32,7 +32,6 @@ public class FileUploadService {
     @Path("dataset")
     @Produces(MediaType.APPLICATION_XML)
     public DataSet getDataset() {
-        System.out.println(test);
         return dataset;
     }
 

@@ -1,15 +1,23 @@
 package com.lab.ly.model;
 
+import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by haswell on 1/5/15.
  */
+@Entity
 @XmlRootElement
 public class Account {
 
+    @Id
+    @GeneratedValue
+    private Long id;
+
+    @Basic
     @XmlElement
+    @Column(name = "name")
     private String name;
 
     public Account(String name) {
@@ -18,6 +26,14 @@ public class Account {
 
     public Account() {
         this(null);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

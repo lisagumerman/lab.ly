@@ -1,4 +1,6 @@
 
 dependencies {
-    compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.2'
+    sharedConfiguration project(":shared-config")
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$hibernateJpaVersion"
+    compile "org.eclipse.persistence:org.eclipse.persistence.moxy:$moxyVersion"
 }
