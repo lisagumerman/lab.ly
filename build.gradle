@@ -1,4 +1,41 @@
 
+def version = { deplist, version ->
+    return deplist.collect {
+        "$it:$version"
+    }
+}
+
+project.ext {
+    deps = [
+            compile:[:],
+            test:[:]
+    ]
+}
+
+
+deps.compile.spring = version([
+        "org.springframework:spring-core",
+        "org.springframework:spring-tx",
+        "org.springframework:spring-context",
+        "org.springframework:spring-aop",
+        "org.springframework:spring-orm",
+], springVersion)
+
+deps.compile.spring += [
+        "org.springframework.data:spring-data-jpa:$springDataJpaVersion"
+]
+
+deps.test.spring = version([
+        "org.springframework:spring-test"
+], springVersion)
+
+defaultTasks = [
+        ":shared-config:clean",
+        ":shared-config:build",
+        "clean",
+        "sharedConfiguration",
+        "build"
+]
 
 allprojects {
 
@@ -6,9 +43,6 @@ allprojects {
         mavenCentral()
         jcenter()
     }
-
-
-
 }
 
 subprojects {
@@ -22,10 +56,11 @@ subprojects {
         from {
             project.configurations.sharedConfiguration.collect { zipTree(it)}
         }
-        into("${project.buildDir}/classes/main")
+        into("${project.buildDir}/classes/test")
+        expand(project.properties)
     }
 
-    build.mustRunAfter sharedConfiguration
+    test.mustRunAfter sharedConfiguration
     defaultTasks = ['clean', 'sharedConfiguration', 'build']
 
 
