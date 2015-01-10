@@ -21,7 +21,6 @@ import java.util.Properties;
 @EnableTransactionManagement
 public class ModelConfiguration {
 
-
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(
             DataSource dataSource,

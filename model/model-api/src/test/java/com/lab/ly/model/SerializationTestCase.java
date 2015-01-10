@@ -32,7 +32,8 @@ public class SerializationTestCase {
     private SerializationStrategy serializationStrategy;
     private final Set<Class<?>> classes;
 
-    public SerializationTestCase(Class<?> classes, Format format) {
+    public SerializationTestCase( Format format, Class<?>...classes) {
+
         this.classes = new HashSet<>(Arrays.asList(classes));
         this.serializationStrategy = new SerializationStrategy(format, classes);
     }

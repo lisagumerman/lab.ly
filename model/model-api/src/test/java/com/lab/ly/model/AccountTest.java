@@ -17,7 +17,9 @@ public class AccountTest extends SerializationTestCase {
 
 
     public AccountTest() {
-        super(Account.class, Format.Json);
+        super(Format.Json,
+                Account.class,
+                User.class);
     }
 
     @Test
