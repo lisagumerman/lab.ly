@@ -3,4 +3,6 @@ dependencies {
     sharedConfiguration project(":shared-config")
     compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api:$hibernateJpaVersion"
     compile "org.eclipse.persistence:org.eclipse.persistence.moxy:$moxyVersion"
+    compile "org.jboss.resteasy:jaxrs-api:$resteasyVersion"
+    compile "org.jboss.resteasy:resteasy-multipart-provider:$resteasyVersion"
 }

@@ -5,6 +5,9 @@ include (
         'model',
         'model:model-api',
         'model:model-core',
+	'service',
+	'service:service-api',
+	'service:service-core',
         'client',
         'web'
 )
