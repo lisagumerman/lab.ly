@@ -54,5 +54,23 @@ public class AccountTest extends SerializationTestCase {
         assertThat(copy(new Account("joe"), Format.Xml), is(equalTo(new Account("joe"))));
     }
 
+    @Test
+    public void ensureAccountWithSingleUserAddedIsSerializedCorrectly() {
+        Account account = new Account("Joe");
+        User user = new User();
+        user.setFirstName("Josiah");
+        user.setLastName("Haswell");
+        account.addUser(user);
+
+        final Account copy = copy(account);
+        assertThat(copy.getName(), is("Joe"));
+        user = account.getUsers().iterator().next();
+        assertThat(user.getFirstName(), is("Josiah"));
+        assertThat(user.getLastName(), is("Haswell"));
+        assertThat(user.getAccounts().size(), is(1));
+
+
+    }
+
 
 }

@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlID;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.util.LinkedHashSet;
 import java.util.Set;
+import javax.persistence.Column;
 
 /**
  * Created by haswell on 1/10/15.
