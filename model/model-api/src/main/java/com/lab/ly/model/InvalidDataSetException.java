@@ -10,6 +10,8 @@ public class InvalidDataSetException extends SystemException {
     public InvalidDataSetException() {
     }
 
+
+
     public InvalidDataSetException(String message) {
         super(message);
     }
