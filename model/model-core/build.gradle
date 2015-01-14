@@ -3,36 +3,11 @@ dependencies {
 
     sharedConfiguration project(":shared-config")
 
+
     compile project(":model:model-api")
+    compile project(":bom:bom-runtime")
+    testCompile project(":bom:bom-test")
 
-    deps.compile.spring.each { dep ->
-        compile dep
-    }
-
-    deps.test.spring.each { dep ->
-        testCompile dep
-    }
-
-
-
-    compile "javax.inject:javax.inject:1"
-    compile "com.zaxxer:HikariCP:$hikariCpVersion"
-    compile "org.flywaydb:flyway-core:$flywayVersion"
-    compile "org.hibernate:hibernate-entitymanager:4.3.7.Final"
-
-    compile "com.netflix.astyanax:astyanax-core:$astyanaxVersion"
-    compile "com.netflix.astyanax:astyanax-cassandra:$astyanaxVersion"
-
-    compile "com.netflix.astyanax:astyanax-queue:$astyanaxVersion"
-    compile "com.netflix.astyanax:astyanax-entity-mapper:$astyanaxVersion"
-    compile "org.apache.spark:spark-core_2.10:1.2.0"
-    compile "org.apache.spark:spark-streaming_2.10:1.2.0"
-    compile "com.datastax.spark:spark-cassandra-connector_2.10:1.1.1"
-
-    testCompile "com.h2database:h2:${h2Version}"
-
-
-//    compile "com.datastax.spark:spark-cassandra-connector:$cassandraSparkVersion"
 }
 
 

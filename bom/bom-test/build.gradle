@@ -1,0 +1,4 @@
+dependencies {
+    compile "com.h2database:h2:$h2Version"
+    compile "org.springframework:spring-test"
+}

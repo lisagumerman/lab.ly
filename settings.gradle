@@ -1,13 +1,21 @@
-include (
-	'shared-config',
+include(
+        'bom',
+        'bom:bom-api',
+        'bom:bom-runtime',
+        'bom:bom-test',
+        'env',
+        'shared-config',
         'common',
+        'common',
+        'common:common-core',
+        'common:common-test',
         'persist',
         'model',
         'model:model-api',
         'model:model-core',
-	'service',
-	'service:service-api',
-	'service:service-core',
+        'service',
+        'service:service-api',
+        'service:service-core',
         'client',
         'web'
 )

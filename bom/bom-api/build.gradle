@@ -1,0 +1,10 @@
+dependencies {
+
+
+    compile "org.jboss.resteasy:jaxrs-api"
+    compile "org.jboss.resteasy:resteasy-multipart-provider"
+    compile "org.eclipse.persistence:org.eclipse.persistence.moxy"
+    compile "org.hibernate.javax.persistence:hibernate-jpa-2.1-api"
+
+
+}

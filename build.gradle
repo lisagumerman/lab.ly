@@ -1,33 +1,12 @@
 
-def version = { deplist, version ->
-    return deplist.collect {
-        "$it:$version"
-    }
+
+plugins {
+    id "io.spring.dependency-management" version "0.3.1.RELEASE"
 }
 
-project.ext {
-    deps = [
-            compile:[:],
-            test:[:]
-    ]
-}
+//"org.springframework.data:spring-data-jpa:$springDataJpaVersion"
 
-
-deps.compile.spring = version([
-        "org.springframework:spring-core",
-        "org.springframework:spring-tx",
-        "org.springframework:spring-context",
-        "org.springframework:spring-aop",
-        "org.springframework:spring-orm",
-], springVersion)
-
-deps.compile.spring += [
-        "org.springframework.data:spring-data-jpa:$springDataJpaVersion"
-]
-
-deps.test.spring = version([
-        "org.springframework:spring-test"
-], springVersion)
+//"org.springframework:spring-test"
 
 defaultTasks = [
         ":shared-config:clean",
@@ -38,10 +17,24 @@ defaultTasks = [
 ]
 
 allprojects {
+    apply plugin: 'io.spring.dependency-management'
 
     repositories {
         mavenCentral()
         jcenter()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "io.spring.platform:platform-bom:$springPlatformVersion"
+            mavenBom "org.jboss.resteasy:resteasy-bom:$resteasyVersion"
+        }
+
+
+        dependencies {
+            "org.eclipse.persistence:org.eclipse.persistence.moxy" moxyVersion
+            "org.hibernate.javax.persistence:hibernate-jpa-2.1-api" hibernateJpaVersion
+        }
     }
 }
 
@@ -49,7 +42,17 @@ subprojects {
     apply plugin: 'java'
 
     configurations {
+        tests
         sharedConfiguration
+    }
+
+    task testArtifact(type:Jar) {
+        classifier = "tests"
+        from sourceSets.test.output
+    }
+
+    artifacts {
+        tests testArtifact
     }
 
     task sharedConfiguration(type:Copy) {
@@ -61,7 +64,12 @@ subprojects {
     }
 
     test.mustRunAfter sharedConfiguration
-    defaultTasks = ['clean', 'sharedConfiguration', 'build']
+
+    defaultTasks = [
+            'clean',
+            'sharedConfiguration',
+            'build'
+    ]
 
 
     dependencies {
