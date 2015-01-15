@@ -12,6 +12,7 @@ import java.io.ByteArrayInputStream;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.lang.instrument.Instrumentation;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,6 +25,11 @@ import java.util.logging.Logger;
 
 
 public class SerializationTestCase {
+
+    protected static Instrumentation instrumentation;
+    public static void premain(String args, Instrumentation i) {
+        instrumentation = i;
+    }
 
 
     static final Logger logger = Logger.getLogger(

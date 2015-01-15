@@ -1,13 +1,17 @@
 package com.lab.ly.service;
 
-import org.springframework.context.annotation.ComponentScan;
+import com.lab.ly.FileUploadService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Import;
 
 /**
  * Created by haswell on 1/13/15.
  */
 @Configuration
-@ComponentScan(basePackages = "com.lab.ly")
 public class ServiceConfiguration {
+
+    @Bean
+    public FileUploadService uploadService() {
+        return new DefaultFileUploadService();
+    }
 }

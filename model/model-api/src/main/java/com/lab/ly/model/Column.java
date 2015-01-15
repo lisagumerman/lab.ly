@@ -4,6 +4,7 @@ import javax.xml.bind.annotation.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -37,6 +38,12 @@ public class Column<T extends Serializable> {
         this.type = type;
     }
 
+    public Column<T> setData(Collection<T> elements) {
+        this.elements.clear();
+        this.elements.addAll(elements);
+        return this;
+    }
+
     @SuppressWarnings("unchecked")
     public Column(
             final Integer index,
@@ -45,7 +52,11 @@ public class Column<T extends Serializable> {
         this.index = index;
         this.name = name;
         this.elements = contents;
-        this.type = (Class<T>) contents.get(0).getClass();
+        if(!(contents == null || contents.isEmpty())) {
+            this.type = (Class<T>) contents.get(0).getClass();
+        } else {
+            this.type = null;
+        }
     }
 
     public Column() {
@@ -61,6 +72,10 @@ public class Column<T extends Serializable> {
                   String name,
                   T...elements) {
         this(index, name, new ArrayList<>(Arrays.asList(elements)));
+    }
+
+    public Integer size() {
+        return elements.size();
     }
 
     public String getName() {
@@ -86,6 +101,11 @@ public class Column<T extends Serializable> {
                         column.name != null);
     }
 
+    public Column<T> add(T element) {
+        this.elements.add(element);
+        return this;
+    }
+
     @Override
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
@@ -102,4 +122,5 @@ public class Column<T extends Serializable> {
                 ", elements=" + elements +
                 '}';
     }
+
 }

@@ -40,6 +40,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'groovy'
 
     configurations {
         tests

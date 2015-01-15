@@ -60,4 +60,17 @@ public class DataSetTest extends SerializationTestCase {
         assertThat(copy.getColumn("test"), is(ds.getColumn("test")));
     }
 
+    @Test
+    public void ensureDataSetContainsHeaderWrapper() {
+        DataSet ds = new DataSet();
+        ds.setColumn("test", Arrays.asList("Hello <i> world</i>",
+                "<h1>How are</h1><i>You?</i>"));
+        DataSet copy = copy(ds, Format.Xml);
+        assertTrue(marshal(ds).contains("<headers>"));
+        assertTrue(marshal(ds).contains("</headers>"));
+        assertTrue(marshal(ds).contains("</header>"));
+        assertTrue(marshal(ds).contains("<header>"));
+
+    }
+
 }

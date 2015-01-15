@@ -4,9 +4,8 @@ import com.lab.ly.model.DataSet;
 import com.lab.ly.model.io.UploadedFile;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
 /**
  * Created by haswell on 1/13/15.
@@ -21,6 +20,25 @@ public interface  FileUploadService {
     @Path("/file")
     @Consumes("multipart/form-data")
     public DataSet upload(@MultipartForm UploadedFile file);
+
+    @GET
+    @Path("{text}")
+    @Produces({
+            MediaType.APPLICATION_XML,
+            MediaType.APPLICATION_JSON,
+    })
+    public String sayHello(@PathParam("text") String text);
+
+
+
+
+    @GET
+    @Path("/")
+    @Produces({
+            MediaType.APPLICATION_XML,
+            MediaType.APPLICATION_JSON,
+    })
+    public DataSet get();
 
 
 }
