@@ -1,4 +1,6 @@
 
 dependencies {
-    compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.2'
+    compile project(":bom:bom-api")
+    compile project(":common:common-core")
+    sharedConfiguration project(":shared-config")
 }

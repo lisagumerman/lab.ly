@@ -1,7 +1,5 @@
 /**
- * User: haswell
- * Date: 11/28/14
- * Time: 7:14 PM
+ * Created by haswell on 1/5/15.
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 package com.lab.ly.model;

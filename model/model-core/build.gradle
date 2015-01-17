@@ -1,0 +1,13 @@
+
+dependencies {
+
+    sharedConfiguration project(":shared-config")
+
+
+    compile project(":model:model-api")
+    compile project(":bom:bom-runtime")
+    testCompile project(":bom:bom-test")
+
+}
+
+

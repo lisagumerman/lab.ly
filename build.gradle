@@ -1,16 +1,80 @@
-allprojects {
 
-    apply plugin: 'idea'
+
+plugins {
+    id "io.spring.dependency-management" version "0.3.1.RELEASE"
+}
+
+//"org.springframework.data:spring-data-jpa:$springDataJpaVersion"
+
+//"org.springframework:spring-test"
+
+defaultTasks = [
+        ":shared-config:clean",
+        ":shared-config:build",
+        "clean",
+        "sharedConfiguration",
+        "build"
+]
+
+allprojects {
+    apply plugin: 'io.spring.dependency-management'
+
     repositories {
         mavenCentral()
         jcenter()
+    }
+
+    dependencyManagement {
+        imports {
+            mavenBom "io.spring.platform:platform-bom:$springPlatformVersion"
+            mavenBom "org.jboss.resteasy:resteasy-bom:$resteasyVersion"
+        }
+
+
+        dependencies {
+            "org.eclipse.persistence:org.eclipse.persistence.moxy" moxyVersion
+            "org.hibernate.javax.persistence:hibernate-jpa-2.1-api" hibernateJpaVersion
+        }
     }
 }
 
 subprojects {
     apply plugin: 'java'
+    apply plugin: 'groovy'
+
+    configurations {
+        tests
+        sharedConfiguration
+    }
+
+    task testArtifact(type:Jar) {
+        classifier = "tests"
+        from sourceSets.test.output
+    }
+
+    artifacts {
+        tests testArtifact
+    }
+
+    task sharedConfiguration(type:Copy) {
+        from {
+            project.configurations.sharedConfiguration.collect { zipTree(it)}
+        }
+        into("${project.buildDir}/classes/test")
+        expand(project.properties)
+    }
+
+    test.mustRunAfter sharedConfiguration
+
+    defaultTasks = [
+            'clean',
+            'sharedConfiguration',
+            'build'
+    ]
+
 
     dependencies {
         testCompile "junit:junit:$junitVersion"
     }
+
 }

@@ -1,3 +1,5 @@
+
+
 buildscript {
     repositories {
         jcenter()
@@ -21,18 +23,22 @@ configurations {
 }
 
 dependencies {
-    compile 'org.springframework:spring-context:4.1.2.RELEASE'
-    compile 'org.springframework:spring-beans:4.1.2.RELEASE'
-    providedCompile 'org.jboss.resteasy:resteasy-jaxrs:3.0.10.Final'
-//    compile 'org.jboss.resteasy:resteasy-spring:3.0.10.Final'
-    providedCompile 'org.jboss.resteasy:resteasy-cdi:3.0.10.Final'
-    providedCompile 'org.jboss.resteasy:resteasy-multipart-provider:3.0.10.Final'
+    compile 'org.springframework:spring-web'
+    compile 'org.springframework:spring-context'
+    compile 'org.springframework:spring-beans'
+    compile 'org.jboss.resteasy:resteasy-spring:3.0.10.Final'
+    compile 'org.jboss.resteasy:resteasy-jaxrs:3.0.10.Final'
+    compile 'org.jboss.resteasy:resteasy-cdi:3.0.10.Final'
+    compile 'org.jboss.resteasy:resteasy-multipart-provider:3.0.10.Final'
     compile 'org.jboss.resteasy:resteasy-jaxb-provider:3.0.10.Final'
 //    compile 'com.sun.xml.bind:jaxb-core:2.2.7'
 
     compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.2'
     compile 'javax.inject:javax.inject:1'
-    compile project(":common")
+    compile project(":model:model-api")
+    compile "org.ow2.asm:asm:4.0"
+    compile project(":common:common-core")
+    compile project(":service:service-core")
 }
 
 sourceSets {
