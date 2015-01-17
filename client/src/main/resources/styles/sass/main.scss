@@ -1,17 +1,14 @@
 @import "imports.scss";
 @import "colors";
 @import "mixins/transformations.scss";
-@import "widget.scss";
-
-@mixin border {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
 
 @mixin cleanup {
   margin: 0;
   padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1em;
 }
 
 @mixin expand {
@@ -29,7 +26,7 @@ html, body {
   overflow: hidden;
   font-family: 'News Cycle', sans-serif;
   background-color: $white;
-  @include cleanup;
+  @include cleanup();
 }
 
 $gridsize: 100px;
@@ -41,13 +38,13 @@ $navwidth: $gridsize*2;
 }
 
 .upload-file {
-//  border: 3px dashed #929292;
-//  position: absolute;
-//  top: $gridsize/2;
-//  right: $gridsize/2;
-//  bottom: $gridsize/2;
-//  left: $gridsize/2;
-  @include border;
+  border: 3px dashed #929292;
+  position: absolute;
+  top: $gridsize/2;
+  right: $gridsize/2;
+  bottom: $gridsize/2;
+  left: $gridsize/2;
+  @include cleanup();
 }
 
 .workspace {
@@ -62,7 +59,7 @@ header {
   left: $navwidth;
   position: absolute;
   padding: 10px 20px;
-  @include border;
+  @include cleanup();
 
   h1 {
     font-size: 50pt;
@@ -90,11 +87,11 @@ nav#leftnav {
   color: $white;
   height: 100%;
   padding: $navwidth+5px 10px 10px;
-  @include border;
+  @include cleanup();
 
   ul {
     list-style-type: none;
-    @include cleanup;
+    @include cleanup();
   }
   a {
     color: $white !important;
@@ -102,3 +99,13 @@ nav#leftnav {
   }
 }
 
+.widget {
+  @include cleanup();
+  padding: 20px;
+  background-color: $white;
+  -webkit-box-shadow: 0 0 20px 0 $black;
+  box-shadow: 0 0 20px 0 $black;
+  h2 {
+    font-family: 'Baumans';
+  }
+}
