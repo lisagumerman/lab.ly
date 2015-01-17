@@ -1,6 +1,7 @@
 @import "imports.scss";
 @import "colors";
 @import "mixins/transformations.scss";
+@import "widget.scss";
 
 @mixin border {
   -moz-box-sizing: border-box;
@@ -40,12 +41,12 @@ $navwidth: $gridsize*2;
 }
 
 .upload-file {
-  border: 3px dashed #929292;
-  position: absolute;
-  top: $gridsize/2;
-  right: $gridsize/2;
-  bottom: $gridsize/2;
-  left: $gridsize/2;
+//  border: 3px dashed #929292;
+//  position: absolute;
+//  top: $gridsize/2;
+//  right: $gridsize/2;
+//  bottom: $gridsize/2;
+//  left: $gridsize/2;
   @include border;
 }
 
@@ -99,12 +100,5 @@ nav#leftnav {
     color: $white !important;
     text-decoration: none;
   }
-}
-
-.draggable {
-  width: 100px;
-  height: 100px;
-  background-color: red;
-
 }
 
