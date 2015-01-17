@@ -1,11 +1,13 @@
 @import "imports.scss";
-@import "colors";
+@import "colors.scss";
 @import "mixins/transformations.scss";
 
 @mixin cleanup {
-  margin: 0;
-  padding: 0;
-  -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; line-height:1em;
+  margin:0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; line-height:1em;
+}
+s
+@mixin clear {
+    clear:both;
 }
 
 @mixin expand {
@@ -18,16 +20,17 @@
 }
 
 html, body {
+    @include cleanup();
   width: 100%;
   height: 100%;
   overflow: hidden;
   font-family: 'News Cycle', sans-serif;
   background-color: $white;
-  @include cleanup();
 }
 
 $gridsize: 100px;
 $navwidth: $gridsize*2;
+$squaresize: $gridsize/4;
 
 #application-main {
   @include expand;
@@ -35,13 +38,14 @@ $navwidth: $gridsize*2;
 }
 
 .upload-file {
-  border: 3px dashed #929292;
+      @include cleanup();
+  border: 3px dashed $grey;
   position: absolute;
-  top: $gridsize/2;
-  right: $gridsize/2;
-  bottom: $gridsize/2;
-  left: $gridsize/2;
-  @include cleanup();
+  top: $squaresize*2;
+  right: $squaresize*2;
+  bottom: $squaresize*2;
+  left: $squaresize*2;
+    padding:$squaresize;
 }
 
 .workspace {
@@ -52,31 +56,24 @@ $navwidth: $gridsize*2;
 }
 
 header {
-  height: $navwidth/2;
+@include cleanup();
+    height: $navwidth/2;
   left: $navwidth;
   position: absolute;
   padding: 10px 20px;
-  @include cleanup();
-
   h1 {
     font-size: 50pt;
     line-height: 1em;
     font-weight: normal;
     display: inline-block;
     font-family: Baumans;
-    @include cleanup;
-
-    .dot {
-      color: $green;
-    }
-  }
-
-  #tagline {
-    font-weight: bold;
-  }
+    @include cleanup();
+    .dot {      color: $green;    }  }
+  #tagline {    font-weight: bold;  }
 }
 
 nav#leftnav {
+    @include cleanup()
   position: fixed;
   left: 0px;
   width: $navwidth;
@@ -84,11 +81,10 @@ nav#leftnav {
   color: $white;
   height: 100%;
   padding: $navwidth+5px 10px 10px;
-  @include cleanup();
 
   ul {
+      @include cleanup();
     list-style-type: none;
-    @include cleanup();
   }
   a {
     color: $white !important;
@@ -96,6 +92,22 @@ nav#leftnav {
   }
 }
 
-.widget { @include cleanup(); padding:20px; background-color:$white; -webkit-box-shadow: 0 0 20px 0 $black; box-shadow: 0 0 20px 0 $black; 
-	h2 { font-family: 'Baumans'; }
+.widget { @include cleanup(); 
+    padding:$squaresize/4; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/4 0 $black; box-shadow: 0 0 $squaresize/4 0 $black; margin:$squaresize;
+    .widget-header {
+        h2 { font-family: 'Baumans'; font-size:25pt; font-weight:normal; margin-top:0; margin-bottom:$squaresize;width:80%; float:left;}
+        nav {
+            min-width:150px; width:20%; float:right;
+            .graph {
+                a { color:$yellow;}
+            }
+            .save {
+                a { color:$teal; }
+            }
+            .trash {
+                a { color:$pink; }
+            }
+        }
+        &:after {include clear();}
+    }
 }
