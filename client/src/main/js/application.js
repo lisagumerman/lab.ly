@@ -7,7 +7,8 @@ require.config({
         angular: 'lib/angular/angular',
         dropzone: 'lib/dropzone/dropzone',
         'jquery-ui': 'lib/jquery/ui',
-        interact: 'lib/interact/interact'
+        interact: 'lib/interact/interact',
+        datatables: 'lib/datatables/datatables.js/jquery.dataTables'
     },
 
     shim: {

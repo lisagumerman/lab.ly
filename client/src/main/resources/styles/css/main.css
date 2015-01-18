@@ -12,6 +12,7 @@
  */
 /* Component containers
 ----------------------------------*/
+@import url(libs/datatables/datatables.css);
 .ui-widget {
   font-family: Verdana, Arial, sans-serif;
   font-size: 1.1em;
@@ -1024,13 +1025,16 @@
 }
 
 html, body {
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1em;
   width: 100%;
   height: 100%;
   overflow: hidden;
   font-family: 'News Cycle', sans-serif;
   background-color: #f2f2f2;
-  margin: 0;
-  padding: 0;
 }
 
 #application-main {
@@ -1044,15 +1048,18 @@ html, body {
 }
 
 .upload-file {
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1em;
   border: 3px dashed #929292;
   position: absolute;
   top: 50px;
   right: 50px;
   bottom: 50px;
   left: 50px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+  padding: 25px;
 }
 
 .workspace {
@@ -1074,13 +1081,15 @@ html, body {
 }
 
 header {
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1em;
   height: 100px;
   left: 200px;
   position: absolute;
   padding: 10px 20px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }
 header h1 {
   font-size: 50pt;
@@ -1089,7 +1098,10 @@ header h1 {
   display: inline-block;
   font-family: Baumans;
   margin: 0;
-  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1em;
 }
 header h1 .dot {
   color: #92b35a;
@@ -1099,6 +1111,11 @@ header #tagline {
 }
 
 nav#leftnav {
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1em;
   position: fixed;
   left: 0px;
   width: 200px;
@@ -1106,24 +1123,95 @@ nav#leftnav {
   color: #f2f2f2;
   height: 100%;
   padding: 205px 10px 10px;
+}
+nav#leftnav ul {
+  margin: 0;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-nav#leftnav ul {
+  line-height: 1em;
   list-style-type: none;
-  margin: 0;
-  padding: 0;
 }
 nav#leftnav a {
   color: #f2f2f2 !important;
   text-decoration: none;
 }
 
-.draggable {
-  width: 100px;
-  height: 100px;
-  background-color: red;
+.widget {
+  margin: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1em;
+  max-width: 750px;
+  max-height: 400px;
+  padding: 25px;
+  background-color: #f2f2f2;
+  -webkit-box-shadow: 0 0 5px 0 rgba(22, 22, 22, 0.3);
+  box-shadow: 0 0 5px 0 rgba(22, 22, 22, 0.3);
+  margin: 25px;
+}
+.widget .widget-body {
+  overflow: auto;
+  width: 700px;
+  height: 300px;
+}
+.widget .widget-header {
+  margin-bottom: 25px;
+}
+.widget .widget-header h2 {
+  font-family: 'Baumans';
+  font-size: 25pt;
+  font-weight: normal;
+  margin: 0;
+  width: 80%;
+  float: left;
+}
+.widget .widget-header nav {
+  min-width: 150px;
+  width: 20%;
+  float: right;
+}
+.widget .widget-header nav .graph a {
+  color: #e7c049;
+}
+.widget .widget-header nav .save a {
+  color: #1f6764;
+}
+.widget .widget-header nav .trash a {
+  color: #c94d65;
+}
+.widget .widget-header:after {
+  clear: both;
+}
+.widget table {
+  border-collapse: collapse;
+  width: 100%;
+}
+.widget table td, .widget table th {
+  border: 1px solid #1f6764;
+  padding: 2px;
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 25px;
+}
+.widget table th {
+  padding-right: 15px;
+}
+.widget table th.graphable:after {
+  width: 0;
+  height: 0;
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid #1f6764;
+}
+.widget table td {
+  font-size: .9em;
+}
+.widget table tr:last-child td {
+  border: 1px solid rgba(31, 103, 100, 0.5);
 }
 
 /*# sourceMappingURL=main.css.map */

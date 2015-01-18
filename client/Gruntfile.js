@@ -28,6 +28,12 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js'
+            }
+        },
+
         connect: {
             server: {
                 options: {
@@ -55,6 +61,7 @@ module.exports = function(grunt) {
                 expand: true
             }
 
+
         },
 
         bowercopy: {
@@ -63,6 +70,7 @@ module.exports = function(grunt) {
                     destPrefix: 'src/main/js/lib'
                 },
                 files: {
+                    'datatables/datatables.js': 'datatables/media/js',
                     'dropzone/dropzone.js' : 'dropzone/downloads/dropzone-amd-module.js',
                     'angular/angular.js' : 'angular/angular.js',
                     'require/require.js' : 'requirejs/require.js',
@@ -70,6 +78,15 @@ module.exports = function(grunt) {
                     'ready/ready.js' : 'domready/ready.js',
                     'jquery/ui' : 'jquery-ui/ui/*.js',
                     'interact/interact.js' : 'interact/interact.js'
+                }
+            },
+
+            styles : {
+                options: {
+                    destPrefix: 'src/main/resources/styles/css/libs'
+                },
+                files : {
+                    'datatables/datatables.css' : 'datatables/media/css/jquery.dataTables.css'
                 }
             }
        
@@ -97,5 +114,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-karma');
 
 };
