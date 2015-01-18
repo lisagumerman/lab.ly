@@ -1,0 +1,105 @@
+@import "fonts";
+
+@mixin cleanup {
+  margin:0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; line-height:1em;
+}
+
+@mixin gridify($bgcolor, $linecolor, $gridsize, $linewidth) {
+  background-color: $bgcolor;
+  background-size:  $gridsize/4 $gridsize/4, $gridsize/4 $gridsize/4;
+  background-image: -webkit-linear-gradient($linecolor $linewidth, transparent $linewidth),
+  -webkit-linear-gradient(0, $linecolor $linewidth, transparent $linewidth);
+  background-image: -moz-linear-gradient($linecolor $linewidth, transparent $linewidth),
+  -moz-linear-gradient(0, $linecolor $linewidth, transparent $linewidth);
+  background-image: linear-gradient($linecolor $linewidth, transparent $linewidth),
+  linear-gradient(90deg, $linecolor $linewidth, transparent $linewidth);
+  -pie-background: linear-gradient($linecolor $linewidth, transparent $linewidth) -$linewidth -$linewidth / $gridsize,
+  linear-gradient(90deg, $linecolor $linewidth, transparent $linewidth) -$linewidth -$linewidth / $gridsize;
+  behavior: url(/pie/PIE.htc);
+}
+
+
+@mixin clear {
+    clear:both;
+}
+
+@mixin expand {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow: auto;
+}
+
+$green: #92b35a;
+$pink: #c94d65;
+$teal: #1f6764;
+$yellow: #e7c049;
+$white: #f2f2f2;
+$black: #161616;
+$grey: #929292;
+
+$greenish: lighten($green, 25%);
+$whiter: lighten($white, 40%);
+$whitest: lighten($white, 80%);
+
+$headerfont: 'baumansregular';
+$bodyfont: 'news_cycleregular';
+$boldfont: 'news_cyclebold';
+
+html, body {
+@include cleanup();
+  width: 100%;
+  height: 100%;
+  font-family: $bodyfont, sans-serif;
+  background-color: $white;
+    font-size:19px;
+}
+
+$gridsize: 100px;
+$squaresize: $gridsize/4;
+
+.wrapper {@include cleanup(); width:100%; max-width:1000px; margin:0 auto; padding:$squaresize; }
+
+h1, h2, h3, h4, h5, h6 { @include cleanup(); font-family: $headerfont; font-weight:normal; line-height:1em; }
+
+.callout { @include cleanup(); 
+    padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/4 0 rgba($black, .3); box-shadow: 0 0 $squaresize/4 0 rgba($black, .3); margin:$squaresize; }
+
+p, ul, ol {margin:5px 0; line-height:1.5em; }
+
+.dot { color: $green; }
+
+header {
+     @include cleanup(); background-image: url('blocks.png'); background-position:top left;background-repeat: no-repeat; min-height:$gridsize*2; text-align:center; padding:0 $gridsize;
+  h1 {
+    font-size: 75pt; display: inline-block;
+  }
+  #tagline { font-family:$boldfont; display:inline-block; font-size:.85em; margin-top:10px; }
+}
+
+h2 { font-size: 35pt; }
+h3 {font-size:20pt; margin-top:$squaresize;}
+
+#overview {
+  background: $black; color:$white;
+}
+
+#howitworks {
+@include gridify($white, $greenish, $gridsize, 1px); }
+
+#roadmap { background-color:$black; color:$white;}
+
+#ourtech { }
+
+footer { background-color:$green;
+    a {color:$black; }
+}
+
+@media (max-width:599px) {
+    header {background-image: url('blocks-small.png'); min-height:$gridsize/2; padding:0 $gridsize/2; 
+        h1 {font-size:50pt;}
+    }
+    h2 {font-size:25pt;}
+}

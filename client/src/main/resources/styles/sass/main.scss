@@ -1,3 +1,4 @@
+@import "fonts.scss";
 @import "imports.scss";
 @import "colors.scss";
 @import "mixins/transformations.scss";
@@ -19,12 +20,17 @@
   overflow: auto;
 }
 
+$bodyfont: 'news_cycleregular', Arial, sans-serif;
+$boldfont: 'news_cyclebold';
+$headerfont: 'baumansregular';
+
+
 html, body {
 @include cleanup();
   width: 100%;
   height: 100%;
   overflow: hidden;
-  font-family: 'News Cycle', sans-serif;
+  font-family: $bodyfont;
   background-color: $white;
 }
 
@@ -66,10 +72,10 @@ header {
     line-height: 1em;
     font-weight: normal;
     display: inline-block;
-    font-family: Baumans;
+    font-family: $headerfont;
     @include cleanup();
     .dot {      color: $green;    }  }
-  #tagline {    font-weight: bold;  }
+  #tagline { font-family:$boldfont; }
 }
 
 nav#leftnav {
@@ -108,7 +114,7 @@ nav#leftnav {
   .widget-header {
     margin-bottom: $squaresize;
     h2 {
-      font-family: 'Baumans';
+      font-family: $headerfont;
       font-size: 25pt;
       font-weight: normal;
       margin: 0;
