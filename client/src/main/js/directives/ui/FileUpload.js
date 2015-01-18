@@ -1,7 +1,7 @@
 define([
     'angular',
     'jquery',
-    'datatables',
+    'dropzone',
     'ui/Draggable',
     'ui/Resizable'
 ], function(angular,
@@ -14,16 +14,14 @@ define([
         return {
             restrict: 'E',
             replace: 'true',
-            templateUrl: 'html/templates/widgets/table.html',
+            templateUrl: 'html/templates/widgets/file-upload.html',
             link:function(scope, element, attributes) {
-                var table = $(element).
-                    find('table:first-child');
-                $(table).DataTable({
-                    lengthChange: false,
-                    searching: false
+                $(element).dropzone({
+                    url: 'http://localhost:8080/web/rest/api/upload/file',
+                    success: function (data, result) {
+
+                    }
                 });
-                Draggable.apply(element);
-                Resizable.apply(element);
             }
         };
     }

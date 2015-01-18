@@ -92,32 +92,80 @@ nav#leftnav {
   }
 }
 
-.widget { @include cleanup(); 
+
+.widget { @include cleanup();
+  max-width:750px;
+  max-height:400px;
+
     padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); margin:$squaresize;
-    .widget-header {
-        margin-bottom:$squaresize;
-        h2 { font-family: 'Baumans'; font-size:25pt; font-weight:normal; margin:0; width:80%; float:left;}
-        nav {
-            min-width:150px; width:20%; float:right;
-            .graph {
-                a { color:$yellow;}
-            }
-            .save {
-                a { color:$teal; }
-            }
-            .trash {
-                a { color:$pink; }
-            }
-        }
-        &:after {@include clear();}
+
+  .widget-body {
+    overflow:auto;
+    width:700px;
+    height:300px;
+  }
+
+  .widget-header {
+    margin-bottom: $squaresize;
+    h2 {
+      font-family: 'Baumans';
+      font-size: 25pt;
+      font-weight: normal;
+      margin: 0;
+      width: 80%;
+      float: left;
     }
-    table { border-collapse: collapse; width:100%; 
-        td, th { border:1px solid $teal; padding:2px; max-width:100px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; height:$squaresize; }
-        th { padding-right:15px;
-            &.graphable:after { width: 0; height: 0; border-left: 15px solid transparent;	border-right: 15px solid transparent;	border-bottom: 15px solid $teal;
-            }
+    nav {
+      min-width: 150px;
+      width: 20%;
+      float: right;
+      .graph {
+        a {
+          color: $yellow;
         }
-        td {font-size:.9em;}
-        tr:last-child td { border:1px solid rgba($teal, .5); }
+      }
+      .save {
+        a {
+          color: $teal;
+        }
+      }
+      .trash {
+        a {
+          color: $pink;
+        }
+      }
     }
+    &:after {
+      @include clear();
+    }
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    td, th {
+      border: 1px solid $teal;
+      padding: 2px;
+      max-width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      height: $squaresize;
+    }
+    th {
+      padding-right: 15px;
+      &.graphable:after {
+        width: 0;
+        height: 0;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-bottom: 15px solid $teal;
+      }
+    }
+    td {
+      font-size: .9em;
+    }
+    tr:last-child td {
+      border: 1px solid rgba($teal, .5);
+    }
+  }
 }

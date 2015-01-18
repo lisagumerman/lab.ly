@@ -1143,11 +1143,18 @@ nav#leftnav a {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   line-height: 1em;
+  max-width: 750px;
+  max-height: 400px;
   padding: 25px;
   background-color: #f2f2f2;
   -webkit-box-shadow: 0 0 5px 0 rgba(22, 22, 22, 0.3);
   box-shadow: 0 0 5px 0 rgba(22, 22, 22, 0.3);
   margin: 25px;
+}
+.widget .widget-body {
+  overflow: auto;
+  width: 700px;
+  height: 300px;
 }
 .widget .widget-header {
   margin-bottom: 25px;
