@@ -3,15 +3,11 @@
 @import "mixins/transformations.scss";
 
 @mixin cleanup {
-  margin: 0;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  line-height: 1em;
+  margin:0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; line-height:1em;
 }
 
 @mixin clear {
-  clear: both;
+    clear:both;
 }
 
 @mixin expand {
@@ -24,7 +20,7 @@
 }
 
 html, body {
-  @include cleanup();
+@include cleanup();
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -42,14 +38,14 @@ $squaresize: $gridsize/4;
 }
 
 .upload-file {
-  @include cleanup();
+      @include cleanup();
   border: 3px dashed $grey;
   position: absolute;
   top: $squaresize*2;
   right: $squaresize*2;
   bottom: $squaresize*2;
   left: $squaresize*2;
-  padding: $squaresize;
+    padding:$squaresize;
 }
 
 .workspace {
@@ -60,8 +56,8 @@ $squaresize: $gridsize/4;
 }
 
 header {
-  @include cleanup();
-  height: $navwidth/2;
+@include cleanup();
+    height: $navwidth/2;
   left: $navwidth;
   position: absolute;
   padding: 10px 20px;
@@ -72,13 +68,8 @@ header {
     display: inline-block;
     font-family: Baumans;
     @include cleanup();
-    .dot {
-      color: $green;
-    }
-  }
-  #tagline {
-    font-weight: bold;
-  }
+    .dot {      color: $green;    }  }
+  #tagline {    font-weight: bold;  }
 }
 
 nav#leftnav {
@@ -92,7 +83,7 @@ nav#leftnav {
   padding: $navwidth+5px 10px 10px;
 
   ul {
-    @include cleanup();
+      @include cleanup();
     list-style-type: none;
   }
   a {
@@ -101,49 +92,32 @@ nav#leftnav {
   }
 }
 
-
-div.widget {
-  @include cleanup();
-  overflow:auto;
-  width:750px;
-  height:400px;
-  padding: $squaresize/4;
-  background-color: $white;
-  -webkit-box-shadow: 0 0 $squaresize/4 0 $black;
-  box-shadow: 0 0 $squaresize/4 0 $black;
-  margin: $squaresize;
-  .widget-header {
-    h2 {
-      font-family: 'Baumans';
-      font-size: 25pt;
-      font-weight: normal;
-      margin-top: 0;
-      margin-bottom: $squaresize;
-      width: 80%;
-      float: left;
-    }
-    nav {
-      min-width: 150px;
-      width: 20%;
-      float: right;
-      .graph {
-        a {
-          color: $yellow;
+.widget { @include cleanup(); 
+    padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); margin:$squaresize;
+    .widget-header {
+        margin-bottom:$squaresize;
+        h2 { font-family: 'Baumans'; font-size:25pt; font-weight:normal; margin:0; width:80%; float:left;}
+        nav {
+            min-width:150px; width:20%; float:right;
+            .graph {
+                a { color:$yellow;}
+            }
+            .save {
+                a { color:$teal; }
+            }
+            .trash {
+                a { color:$pink; }
+            }
         }
-      }
-      .save {
-        a {
-          color: $teal;
-        }
-      }
-      .trash {
-        a {
-          color: $pink;
-        }
-      }
+        &:after {@include clear();}
     }
-    &:after {
-      @include clear();
+    table { border-collapse: collapse; width:100%; 
+        td, th { border:1px solid $teal; padding:2px; max-width:100px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; height:$squaresize; }
+        th { padding-right:15px;
+            &.graphable:after { width: 0; height: 0; border-left: 15px solid transparent;	border-right: 15px solid transparent;	border-bottom: 15px solid $teal;
+            }
+        }
+        td {font-size:.9em;}
+        tr:last-child td { border:1px solid rgba($teal, .5); }
     }
-  }
 }
