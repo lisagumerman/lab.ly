@@ -50,6 +50,11 @@ public class User implements Entity<Long, String> {
         return getId() != null;
     }
 
+    @Override
+    public EntityCoordinate<Long, String> getCoordinate() {
+        return new EntityCoordinate<>(id, firstName);
+    }
+
     public void setId(Long id) {
         this.id = id;
     }

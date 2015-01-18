@@ -34,7 +34,21 @@ allprojects {
         dependencies {
             "org.eclipse.persistence:org.eclipse.persistence.moxy" moxyVersion
             "org.hibernate.javax.persistence:hibernate-jpa-2.1-api" hibernateJpaVersion
+
+
+            dependencySet(
+                    group:'com.netflix.astyanax',
+                    version:"$astyanaxVersion"
+            ) {
+                entry 'astyanax-core'
+                entry 'astyanax-thrift'
+                entry 'astyanax-cassandra'
+            }
+
         }
+
+
+
     }
 }
 

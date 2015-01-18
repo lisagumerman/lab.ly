@@ -17,8 +17,11 @@ public interface Entity<
 
     Key getKey();
 
+
     boolean isNew();
 
     boolean equals(Object o);
+
+    EntityCoordinate<ID, Key> getCoordinate();
 
 }

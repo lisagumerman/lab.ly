@@ -2,17 +2,14 @@ package com.lab.ly.model;
 
 import javax.xml.bind.annotation.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by haswell on 1/12/15.
  * TODO: create type-aware java type adapater
  */
 @XmlRootElement
-public class Column<T extends Serializable> {
+public class Column<T extends Serializable> implements Iterable<T> {
 
     @XmlAttribute
     private String name;
@@ -123,4 +120,8 @@ public class Column<T extends Serializable> {
                 '}';
     }
 
+    @Override
+    public Iterator<T> iterator() {
+        return elements.iterator();
+    }
 }

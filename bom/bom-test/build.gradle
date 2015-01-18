@@ -1,8 +1,8 @@
 dependencies {
     compile "com.h2database:h2:$h2Version"
     compile "org.springframework:spring-test"
-
-
+    compile "org.cassandraunit:cassandra-unit:2.0.2.2"
+    compile "org.cassandraunit:cassandra-unit-spring:2.0.2.2"
     compile 'org.codehaus.groovy:groovy-all:2.3.7'
     compile "org.spockframework:spock-core:0.7-groovy-2.0"
 }

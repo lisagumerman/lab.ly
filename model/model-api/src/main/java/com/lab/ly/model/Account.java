@@ -111,6 +111,11 @@ public class Account implements Entity<Long, String> {
     }
 
     @Override
+    public EntityCoordinate<Long, String> getCoordinate() {
+        return new EntityCoordinate<>(id, name);
+    }
+
+    @Override
     public int hashCode() {
         return name != null ? name.hashCode() : 0;
     }

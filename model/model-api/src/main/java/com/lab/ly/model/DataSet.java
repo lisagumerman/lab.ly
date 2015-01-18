@@ -21,6 +21,9 @@ public class DataSet implements Entity<UUID, String> {
     private UUID id;
 
     @XmlElement
+    private String name;
+
+    @XmlElement
     private Map<String, Column<?>> columns;
 
     @XmlAttribute
@@ -80,12 +83,17 @@ public class DataSet implements Entity<UUID, String> {
 
     @Override
     public String getKey() {
-        return id.toString();
+        return name;
     }
 
     @Override
     public boolean isNew() {
         return true;
+    }
+
+    @Override
+    public EntityCoordinate<UUID, String> getCoordinate() {
+        return new EntityCoordinate<>(id, getKey());
     }
 
     public <T extends Serializable> DataSet setColumn(

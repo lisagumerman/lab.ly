@@ -1,0 +1,12 @@
+dependencies {
+
+    sharedConfiguration project(":shared-config")
+
+    compile project(":persist:persist-api")
+
+    testCompile project(":bom:bom-test")
+
+    compile 'com.netflix.astyanax:astyanax-core'
+    compile 'com.netflix.astyanax:astyanax-thrift'
+    compile 'com.netflix.astyanax:astyanax-cassandra'
+}
