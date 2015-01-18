@@ -20,7 +20,7 @@ s
 }
 
 html, body {
-    @include cleanup();
+@include cleanup();
   width: 100%;
   height: 100%;
   overflow: hidden;
@@ -93,9 +93,10 @@ nav#leftnav {
 }
 
 .widget { @include cleanup(); 
-    padding:$squaresize/4; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/4 0 $black; box-shadow: 0 0 $squaresize/4 0 $black; margin:$squaresize;
+    padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); margin:$squaresize;
     .widget-header {
-        h2 { font-family: 'Baumans'; font-size:25pt; font-weight:normal; margin-top:0; margin-bottom:$squaresize;width:80%; float:left;}
+        margin-bottom:$squaresize;
+        h2 { font-family: 'Baumans'; font-size:25pt; font-weight:normal; margin:0; width:80%; float:left;}
         nav {
             min-width:150px; width:20%; float:right;
             .graph {
@@ -108,6 +109,15 @@ nav#leftnav {
                 a { color:$pink; }
             }
         }
-        &:after {include clear();}
+        &:after {@include clear();}
+    }
+    table { border-collapse: collapse; width:100%; 
+        td, th { border:1px solid $teal; padding:2px; max-width:100px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; height:$squaresize; }
+        th { padding-right:15px;
+            &.graphable:after { width: 0; height: 0; border-left: 15px solid transparent;	border-right: 15px solid transparent;	border-bottom: 15px solid $teal;
+            }
+        }
+        td {font-size:.9em;}
+        tr:last-child td { border:1px solid rgba($teal, .5); }
     }
 }
