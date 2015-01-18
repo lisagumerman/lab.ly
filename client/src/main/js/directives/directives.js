@@ -1,14 +1,11 @@
 define([
     'angular',
     'directives/ui/Workspace',
-    'directives/ui/DraggableWidget'
-], function(angular, Workspace, Draggable){
+    'directives/ui/DataTable'
+], function(angular, Workspace, DataTable){
 
     var Directives = angular.module('Lably.Directives', []);
     Directives.directive('workspace', Workspace);
-    Directives.directive('draggable', Draggable);
-
-
-
+    Directives.directive('datatable', DataTable);
     return Directives;
 });
