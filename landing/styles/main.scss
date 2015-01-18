@@ -54,7 +54,7 @@ html, body {
   height: 100%;
   font-family: $bodyfont, sans-serif;
   background-color: $white;
-    font-size:18px;
+    font-size:19px;
 }
 
 $gridsize: 100px;
@@ -83,8 +83,7 @@ h2 { font-size: 35pt; }
 h3 {font-size:20pt; margin-top:$squaresize;}
 
 #overview {
-  background: $green;
-    .dot {color:$black;}
+  background: $black; color:$white;
 }
 
 #howitworks {

@@ -27,7 +27,7 @@ html, body {
   height: 100%;
   font-family: "news_cycleregular", sans-serif;
   background-color: #f2f2f2;
-  font-size: 18px; }
+  font-size: 19px; }
 
 .wrapper {
   margin: 0;
@@ -98,9 +98,8 @@ h3 {
   margin-top: 25px; }
 
 #overview {
-  background: #92b35a; }
-  #overview .dot {
-    color: #161616; }
+  background: #161616;
+  color: #f2f2f2; }
 
 #howitworks {
   background-color: #f2f2f2;
