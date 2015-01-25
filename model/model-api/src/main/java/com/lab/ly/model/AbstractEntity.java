@@ -1,9 +1,7 @@
 package com.lab.ly.model;
 
-import javax.persistence.Basic;
+import javax.persistence.*;
 import javax.persistence.Column;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
 import javax.xml.bind.annotation.XmlAnyAttribute;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
@@ -19,6 +17,11 @@ public abstract class AbstractEntity<ID extends Serializable,
 
     @Id
     @XmlAttribute
+    @GeneratedValue
+    @Column(
+            name = "id",
+            insertable = false,
+            updatable = false)
     private ID id;
 
     @Basic
