@@ -1,0 +1,16 @@
+@mixin cleanup {  margin:0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; line-height:1.1em; }
+
+@mixin clear { clear:both; }
+
+@mixin expand {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  overflow: auto;
+}
+
+$gridsize: 100px;
+$navwidth: $gridsize*2;
+$squaresize: $gridsize/4;
