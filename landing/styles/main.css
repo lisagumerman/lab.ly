@@ -59,12 +59,14 @@ h1, h2, h3, h4, h5, h6 {
   padding: 25px;
   background-color: #f2f2f2;
   -webkit-box-shadow: 0 0 6.25px 0 rgba(22, 22, 22, 0.3);
-  box-shadow: 0 0 6.25px 0 rgba(22, 22, 22, 0.3);
-  margin: 25px; }
+  box-shadow: 0 0 6.25px 0 rgba(22, 22, 22, 0.3); }
 
 p, ul, ol {
   margin: 5px 0;
   line-height: 1.5em; }
+
+ol.callout {
+  padding-left: 50px; }
 
 .dot {
   color: #92b35a; }

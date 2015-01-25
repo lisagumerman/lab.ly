@@ -18,20 +18,6 @@
   behavior: url(/pie/PIE.htc);
 }
 
-
-@mixin clear {
-    clear:both;
-}
-
-@mixin expand {
-  position: absolute;
-  top: 0px;
-  bottom: 0px;
-  left: 0px;
-  right: 0px;
-  overflow: auto;
-}
-
 $green: #92b35a;
 $pink: #c94d65;
 $teal: #1f6764;
@@ -65,9 +51,11 @@ $squaresize: $gridsize/4;
 h1, h2, h3, h4, h5, h6 { @include cleanup(); font-family: $headerfont; font-weight:normal; line-height:1em; }
 
 .callout { @include cleanup(); 
-    padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/4 0 rgba($black, .3); box-shadow: 0 0 $squaresize/4 0 rgba($black, .3); margin:$squaresize; }
+    padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/4 0 rgba($black, .3); box-shadow: 0 0 $squaresize/4 0 rgba($black, .3); }
 
 p, ul, ol {margin:5px 0; line-height:1.5em; }
+
+ol.callout {padding-left:$squaresize*2;}
 
 .dot { color: $green; }
 
