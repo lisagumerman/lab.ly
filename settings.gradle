@@ -23,6 +23,5 @@ include(
         'blade',
         'blade:blade-api',
         'blade:blade-core',
-        'trelawney',
         'web'
 )
