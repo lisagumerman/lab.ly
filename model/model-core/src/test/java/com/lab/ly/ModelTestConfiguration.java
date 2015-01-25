@@ -31,7 +31,9 @@ public class ModelTestConfiguration {
 
     @Bean
     public JpaVendorAdapter vendorAdapter() {
-        return new HibernateJpaVendorAdapter();
+        final HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setGenerateDdl(false);
+        return adapter;
     }
 
     @Bean

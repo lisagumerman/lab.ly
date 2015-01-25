@@ -12,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import java.util.Properties;
 import static org.hamcrest.CoreMatchers.*;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 /**
@@ -47,5 +48,18 @@ public class AccountPersistenceTest extends PersistenceTestCase {
 
     }
 
+    @Test
+    public void ensureAccountCanHaveUserAdded() {
+
+        Account account = new Account("test account");
+        User user = new User();
+        user.setFirstName("Test");
+        user.setLastName("User");
+        account.addUser(user);
+        entityManager.persist(account);
+
+        assertNotNull(account.getId());
+        assertNotNull(user.getId());
+    }
 
 }

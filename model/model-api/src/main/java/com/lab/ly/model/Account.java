@@ -20,6 +20,7 @@ public class Account implements Entity<Long, String> {
     @Id
     @XmlID
     @GeneratedValue
+    @Column(name = "id")
     private Long id;
 
     @Basic
@@ -27,7 +28,9 @@ public class Account implements Entity<Long, String> {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany
+    @ManyToMany(
+            cascade = CascadeType.ALL
+    )
     @JoinTable(
         name = "account_users",
         joinColumns = @JoinColumn(
@@ -42,6 +45,12 @@ public class Account implements Entity<Long, String> {
     @XmlInverseReference(mappedBy = "account")
     private Set<User> users = new LinkedHashSet<>();
 
+
+    @OneToMany
+    @XmlElement
+    @JoinColumn(name = "account_id")
+    @XmlElementWrapper(name = "datasets")
+    private Set<DataSetDescriptor> datasets;
 
 
 
@@ -88,6 +97,14 @@ public class Account implements Entity<Long, String> {
             if(user.addAccount(this)) {
                 return users.add(user);
             }
+        }
+        return false;
+    }
+
+    public boolean addDataSet(DataSetDescriptor dataSetDescriptor) {
+        if(dataSetDescriptor != null) {
+            dataSetDescriptor.setOwner(this);
+            return datasets.add(dataSetDescriptor);
         }
         return false;
     }
