@@ -52,4 +52,10 @@ public class ModelConfiguration {
         return new JpaTransactionManager(factory);
     }
 
+    @Bean
+    public PersistenceContext defaultPersistenceContext(DataSource dataSource) {
+        return new PersistenceContext(dataSource);
+    }
+
+
 }

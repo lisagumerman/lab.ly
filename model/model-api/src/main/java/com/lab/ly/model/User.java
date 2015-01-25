@@ -19,6 +19,8 @@ public class User implements Entity<Long, String> {
 
     @Id
     @XmlID
+    @GeneratedValue
+    @Column(name = "id")
     private Long id;
 
     @Basic

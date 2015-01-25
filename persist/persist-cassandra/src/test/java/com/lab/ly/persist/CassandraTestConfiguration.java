@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * TODO:
  *
- * Connect to embedded cassandra 
+ * Connect to embedded cassandra
  */
 @Configuration
 public class CassandraTestConfiguration {

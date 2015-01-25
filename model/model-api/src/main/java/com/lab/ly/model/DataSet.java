@@ -45,7 +45,6 @@ public class DataSet implements Entity<UUID, String> {
 
     public Integer getRowCount() {
         return columns.entrySet().iterator().next().getValue().size();
-
     }
 
 
@@ -54,7 +53,6 @@ public class DataSet implements Entity<UUID, String> {
             columns.put(header, new Column<>(0, header));
         }
         return this;
-
     }
 
     public Collection<String> getHeaders() {
