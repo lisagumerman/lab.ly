@@ -1,158 +1,63 @@
+@import "libs/foundation/foundation/settings";
+@import "libs/foundation/foundation/components/joyride";
+@import "libs/foundation/foundation/components/tabs";
+@import "libs/foundation/foundation/components/tooltips";
+@import "libs/foundation/foundation/components/offcanvas";
 @import "fonts.scss";
 @import "imports.scss";
 @import "colors.scss";
 @import "format.scss";
 @import "mixins/transformations.scss";
 
-html, body {
-@include cleanup;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  font-family: $bodyfont;
-  background-color: $white;
-    font-size:16px;
-}
+html, body {  @include cleanup;  width: 100%;  height: 100%;  overflow: hidden;  font-family: $bodyfont;  background-color: $white;  font-size:16px;  }
 
-#application-main {
-  @include expand;
-  overflow: hidden;
-}
+#application-main {  @include expand;  overflow: hidden;  }
 
-input, select, textarea { -moz-appearance:none; -webkit-appearance:none; @include cleanup; border:1px solid $black; background-color:$greenish; padding:2px; }
+.upload-file {  @include cleanup;  border: 3px dashed $grey;  position: absolute;  top: $squaresize*2;  right: $squaresize*2;  bottom: $squaresize*2;  left: $squaresize*2;  padding:$squaresize;  }
 
-input[type="radio"], input[type="checkbox"] { width:1em; height:1em; }
+.workspace {  @include gridify($white, $greenish, $gridsize, 1px);  @include expand;  top: $navwidth/2;  left: $navwidth;  }
 
-.upload-file {
-      @include cleanup;
-  border: 3px dashed $grey;
-  position: absolute;
-  top: $squaresize*2;
-  right: $squaresize*2;
-  bottom: $squaresize*2;
-  left: $squaresize*2;
-    padding:$squaresize;
-}
-
-.workspace {
-  @include gridify($white, $greenish, $gridsize, 1px);
-  @include expand;
-  top: $navwidth/2;
-  left: $navwidth;
-}
-
-header {
-@include cleanup;
-    height: $navwidth/2;
-  left: $navwidth;
-  position: absolute;
-  padding: 10px 20px;
-  h1 {
-    font-size: 50pt;
-    line-height: 1em;
-    font-weight: normal;
-    display: inline-block;
-    font-family: $headerfont;
-    @include cleanup;
+header {  @include cleanup;  height: $navwidth/2;  left: $navwidth;  position: absolute;  padding: 10px 20px;
+  h1 {  font-size: 50pt;  font-weight: normal;  display: inline-block;  font-family: $headerfont;  @include cleanup;
     .dot {      color: $green;    }
   }
   #tagline { font-family:$boldfont; }
 }
 
-nav#leftnav {
-  @include cleanup;
-  position: fixed;
-  left: 0px;
-  width: $navwidth;
-  background: $black url('../../images/blocks.png') top left no-repeat;
-  color: $white;
-  height: 100%;
-  padding: $navwidth+5px 10px 10px;
-
-  ul {
-      @include cleanup;
-    list-style-type: none;
-  }
-  a {
-    color: $white !important;
-    text-decoration: none;
-  }
+nav#leftnav {  @include cleanup;  position: fixed;  left: 0px;  width: $navwidth;  background: $black url('../../images/blocks.png') top left no-repeat;  color: $white;  height: 100%;  padding: $navwidth+5px 10px 10px;
+  ul {  @include cleanup;  list-style-type: none;  }
+  a {  color: $white !important;  text-decoration: none;  }
 }
 
-
-.widget { @include cleanup;
-  max-width:750px;
-  max-height:400px;
-
-    padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); margin:$squaresize;
-
-  .widget-body {
-    overflow:auto;
-    width:700px;
-    height:300px;
-  }
-
-  .widget-header {
-    margin-bottom: $squaresize;
-    h2 {
-      font-family: $headerfont;
-      font-size: 25pt;
-      font-weight: normal;
-      margin: 0;
-      width: 80%;
-      float: left;
-    }
-    nav {
-      min-width: 150px;
-      width: 20%;
-      float: right;
+.widget { @include cleanup;  max-width:750px;  max-height:400px;  padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); margin:$squaresize;
+  .widget-body {  overflow:auto;  width:700px;  height:300px;  }
+  .widget-header {  margin-bottom: $squaresize;
+    h2 {  font-family: $headerfont;  font-size: 25pt;  font-weight: normal;  margin: 0;  width: 80%;  float: left;  }
+    nav {  min-width: 150px;  width: 20%;  float: right;
       .graph {
-        a {
-          color: $yellow;
-        }
+        a {  color: $yellow;  }
       }
       .save {
-        a {
-          color: $teal;
-        }
+        a {  color: $teal;  }
       }
       .trash {
-        a {
-          color: $pink;
-        }
+        a {  color: $pink;  }
       }
     }
-    &:after {
-      @include clear;
+    &:after {  @include clear;
     }
   }
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    td, th {
-      border: 1px solid $teal;
-      padding: 2px;
-      max-width: 100px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      height: $squaresize;
+  table {  border-collapse: collapse;  width: 100%;
+    td, th {  border: 1px solid $teal;  padding: 2px;  max-width: 100px;  overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap;  height: $squaresize;  }
+    th {  padding-right: 15px;
+      &.graphable:after {  width: 0;  height: 0;  border-left: 15px solid transparent;  border-right: 15px solid transparent;  border-bottom: 15px solid $teal;  }
     }
-    th {
-      padding-right: 15px;
-      &.graphable:after {
-        width: 0;
-        height: 0;
-        border-left: 15px solid transparent;
-        border-right: 15px solid transparent;
-        border-bottom: 15px solid $teal;
-      }
-    }
-    td {
-      font-size: .9em;
-    }
-    tr:last-child td {
-      border: 1px solid rgba($teal, .5);
-    }
+    td {  font-size: .9em;  }
+    tr:last-child td {  border: 1px solid rgba($teal, .5);  }
   }
 }
+
+input, select, textarea { -moz-appearance:none; -webkit-appearance:none; @include cleanup; border:1px solid $black; background-color:$greenish; padding:2px; }
+input[type="radio"], input[type="checkbox"] { width:1em; height:1em; }
+span.error { color:$pink; }
+.sidenote { font-size:.5em; }

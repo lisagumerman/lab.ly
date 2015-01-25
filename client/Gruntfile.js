@@ -54,11 +54,23 @@ module.exports = function(grunt) {
                     return i + o.replace('.css', '.scss')
                 }
             },
+            zurb: {
+                cwd: 'bower_components/foundation/scss',
+                src: './**/*.scss',
+                dest: 'src/main/resources/styles/sass/libs/foundation',
+                expand: true
+            },
             images : {
                 cwd: 'bower_components/jquery-ui/themes/base/images',
                 src: './*.*',
                 dest: 'src/main/resources/styles/css/images',
                 expand: true
+            },
+            foundation : {
+                cwd: 'bower_components/foundation/js/',
+                src: './**/*.js',
+                dest: 'src/main/js/lib/zurb',
+                expand:true
             }
 
 
