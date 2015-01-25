@@ -19,7 +19,7 @@ public class DataSetSerializationTest extends SerializationTestCase {
                 ColumnDefinition.class
         );
     }
-    
+
     @Test
     public void ensureDataSetDescriptorWithDataSetCanBeSerialized() {
         DataSetDescriptor descriptor = new DataSetDescriptor();
