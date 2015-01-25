@@ -1,4 +1,4 @@
-@mixin cleanup {  margin:0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; line-height:1.1em; }
+@mixin cleanup {  margin:0; line-height:1.1em; -webkit-margin-before:0em;  -webkit-margin-after:0em; padding:0; }
 
 @mixin clear { clear:both; }
 
