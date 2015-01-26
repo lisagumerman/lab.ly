@@ -124,6 +124,10 @@ public class DataSet implements Entity<UUID, String> {
         }
     }
 
+    public void setKey(final String key) {
+        this.name = key;
+    }
+
     public void setJagged(Boolean jagged) {
         this.jagged = jagged;
     }

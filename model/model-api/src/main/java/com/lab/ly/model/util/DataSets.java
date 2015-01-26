@@ -30,6 +30,7 @@ public class DataSets {
             for(int i = 1; i < rows.size(); ++i) {
                 dataSet.addRow(rows.get(i));
             }
+            dataSet.setKey(file.getName());
             return dataSet;
         } catch(IOException ex) {
             throw new InvalidDataSetException(ex);
