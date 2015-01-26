@@ -14,7 +14,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Embeddable
 @XmlRootElement
-@Table(name = "lably_column_definition")
 public class ColumnDefinition {
 
     @Enumerated

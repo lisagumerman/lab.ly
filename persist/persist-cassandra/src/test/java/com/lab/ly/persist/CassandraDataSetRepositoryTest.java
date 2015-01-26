@@ -5,8 +5,17 @@ import com.lab.ly.DataSetRepository;
 import com.lab.ly.model.Column;
 import com.lab.ly.model.DataSet;
 import com.netflix.astyanax.Keyspace;
+import com.netflix.astyanax.MutationBatch;
+import com.netflix.astyanax.connectionpool.OperationResult;
+import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
+import com.netflix.astyanax.model.ColumnFamily;
+import com.netflix.astyanax.model.CqlResult;
+import com.netflix.astyanax.model.Row;
+import com.netflix.astyanax.serializers.StringSerializer;
 import org.cassandraunit.utils.EmbeddedCassandraServerHelper;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import javax.inject.Inject;
@@ -26,33 +35,58 @@ public class CassandraDataSetRepositoryTest extends CassandraTestCase {
     @Inject
     private Keyspace keyspace;
 
-    private DataSetRepository repository;
+
 
     @Test
-    public void ensureRepositoryIsInjected() {
-        assertNotNull(keyspace);
+    public void ensureCanCreateKeyspace() throws ConnectionException {
+
+
+
+        ColumnFamily<String, String> CF_USER_INFO =
+                new ColumnFamily<>(
+                        "Standard1",              // Column Family Name
+                        StringSerializer.get(),   // Key Serializer
+                        StringSerializer.get());
+
+        keyspace.createColumnFamily(CF_USER_INFO, null);
+
+        MutationBatch m = keyspace.prepareMutationBatch();
+
+        m.withRow(CF_USER_INFO, "acct1234")
+                .putColumn("firstname", "john", null)
+                .putColumn("lastname", "smith", null)
+                .putColumn("address", "555 Elm St", null)
+                .putColumn("age", 30, null);
+
+        m.withRow(CF_USER_INFO, "acct1235")
+                .putColumn("firstname", "josiah", null)
+                .putColumn("lastname", "smith", null)
+                .putColumn("address", "555 Elm St", null)
+                .putColumn("age", 30, null);
+
+
+        try {
+            OperationResult<Void> result = m.execute();
+        } catch (ConnectionException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            OperationResult<CqlResult<String, String>> result
+                    = keyspace.prepareQuery(CF_USER_INFO)
+                    .withCql("SELECT * FROM Standard1;")
+                    .execute();
+            for (Row<String, String> row : result.getResult().getRows()) {
+                System.out.println(
+                        row.getColumns().getColumnByName("firstname")
+                                .getStringValue()
+
+                );
+            }
+        } catch (ConnectionException e) {
+
+        }
     }
 
-    @Test
-    public void ensureSavingRepositoryResultsInRepositoryBeingSaved() {
-        final DataSet dataSet = sampleDataSet();
-        UUID result = repository.save(dataSet);
-        assertNotNull(result);
-    }
 
-    @Before
-    public void setUp() throws Exception {
-
-    }
-
-
-    DataSet sampleDataSet() {
-        final DataSet dataSet = new DataSet();
-        dataSet.setColumn(createColumn("test", 1,2,3));
-        return dataSet;
-    }
-
-    private Column<Serializable> createColumn(String test, Serializable...items) {
-        return new Column<>(0, test, Arrays.asList(items));
-    }
 }

@@ -5,6 +5,7 @@ import org.eclipse.persistence.oxm.annotations.XmlInverseReference;
 import javax.persistence.*;
 import javax.xml.bind.annotation.*;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -46,11 +47,11 @@ public class Account implements Entity<Long, String> {
     private Set<User> users = new LinkedHashSet<>();
 
 
-    @OneToMany
     @XmlElement
-    @JoinColumn(name = "account_id")
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
     @XmlElementWrapper(name = "datasets")
-    private Set<DataSetDescriptor> datasets;
+    private Set<DataSetDescriptor> datasets = new HashSet<>();
 
 
 
@@ -99,6 +100,10 @@ public class Account implements Entity<Long, String> {
             }
         }
         return false;
+    }
+
+    public Set<DataSetDescriptor> getDataSets() {
+        return datasets;
     }
 
     public boolean addDataSet(DataSetDescriptor dataSetDescriptor) {

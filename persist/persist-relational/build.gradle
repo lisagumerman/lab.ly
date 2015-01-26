@@ -1,0 +1,5 @@
+
+dependencies {
+    compile project(":model:model-core")
+    compile project(":persist:persist-api")
+}

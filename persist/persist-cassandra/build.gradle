@@ -2,11 +2,18 @@ dependencies {
 
     sharedConfiguration project(":shared-config")
 
-    compile project(":persist:persist-api")
 
     testCompile project(":bom:bom-test")
+    testCompile project(
+            path: ":model:model-core",
+            configuration:'tests'
+    )
 
+    compile 'com.github.stephenc:jamm:0.2.5'
     compile 'com.netflix.astyanax:astyanax-core'
     compile 'com.netflix.astyanax:astyanax-thrift'
     compile 'com.netflix.astyanax:astyanax-cassandra'
+    compile project(":persist:persist-api")
+    compile project(":persist:persist-relational")
+
 }
