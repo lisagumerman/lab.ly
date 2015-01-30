@@ -14,16 +14,18 @@ define([
         return {
             restrict: 'E',
             replace: 'true',
+            require: '^widget',
+
             templateUrl: 'html/templates/widgets/table.html',
             link:function(scope, element, attributes) {
                 var table = $(element).
                     find('table:first-child');
                 $(table).DataTable({
                     lengthChange: false,
-                    searching: false
+                    searching: false,
+                    aaData: scope.data,
+                    aoColumns:scope.columns
                 });
-                Draggable.apply(element);
-                Resizable.apply(element);
             }
         };
     }

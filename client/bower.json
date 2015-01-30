@@ -25,6 +25,8 @@
     "dropzone": "~3.11.1",
     "interact": "~1.1.2",
     "foundation": "zurb/bower-foundation#~5.5.0",
-    "datatables": "~1.10.4"
+    "datatables": "~1.10.4",
+    "lodash-amd": "~3.0.0",
+    "lodash": "~3.0.0"
   }
 }

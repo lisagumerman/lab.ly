@@ -1,6 +1,7 @@
 package com.lab.ly;
 
 import com.lab.ly.model.DataSet;
+import com.lab.ly.model.internal.Table;
 import com.lab.ly.model.io.UploadedFile;
 import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
@@ -28,7 +29,6 @@ public interface  FileUploadService {
             MediaType.APPLICATION_JSON,
     })
     public String sayHello(@PathParam("text") String text);
-
 
 
 

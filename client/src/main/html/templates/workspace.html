@@ -1,14 +1,19 @@
 <div class="workspace">
 
     <!--<div style="border:1px solid red; margin-top:500px; margin-left:500px; width:100px; height:100px; background-color:blue" id="cool" draggable></div>-->
-    <div class="workspace-content">
+    <div
+        class="workspace-content"
+        ng-controller="WorkspaceController"
 
-        <dropzone />
+    >
+        <widget>
+            <dropzone on-data-loaded="createTable(data)"/>
+        </widget>
+        <!--<widget>-->
+            <!--<datatable>-->
 
-
+            <!--</datatable>-->
+        <!--</widget>-->
 
     </div>
-
-
-
 </div>

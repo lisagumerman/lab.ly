@@ -1,28 +1,43 @@
 define([
+    'lodash',
     'angular',
     'jquery',
     'dropzone',
-    'ui/Draggable',
-    'ui/Resizable'
-], function(angular,
+    'util/TableFormatter'
+], function(
+    _,
+    angular,
             $,
             datatables,
-            Draggable,
-            Resizable){
+            Formatter){
 
-    return function() {
+    return ['Widgets', function(Widgets) {
+
         return {
             restrict: 'E',
+            transclude:true,
             replace: 'true',
+            require: '^widget',
+            scope: {
+                onDataLoaded: '&onDataLoaded'
+            },
             templateUrl: 'html/templates/widgets/file-upload.html',
-            link:function(scope, element, attributes) {
+            link:function postLink(scope, element, attributes) {
+                var f = scope.onDataLoaded;
                 $(element).dropzone({
                     url: 'http://localhost:8080/web/rest/api/upload/file',
                     success: function (data, result) {
+                        var transformed = Formatter.apply(result);
+                           scope.data = transformed;
+                        scope.columns = _.map(result.header,
+                            function(header){
+                            return {"sTitle": header}
+                        });
+                        Widgets.addTable(null, $(element).parentsUntil('div.workspace:first'), scope);
 
                     }
                 });
             }
         };
-    }
+    }];
 });
