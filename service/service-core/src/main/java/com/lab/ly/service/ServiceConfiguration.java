@@ -11,6 +11,11 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfiguration {
 
     @Bean
+    public DefaultDataSourceService dataSourceService() {
+        return new DefaultDataSourceService();
+    }
+
+    @Bean
     public FileUploadService uploadService() {
         return new DefaultFileUploadService();
     }
