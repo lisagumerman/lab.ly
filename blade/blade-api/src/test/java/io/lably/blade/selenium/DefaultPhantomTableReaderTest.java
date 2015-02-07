@@ -3,6 +3,7 @@ package io.lably.blade.selenium;
 import com.lab.ly.model.Column;
 import com.lab.ly.model.DataSet;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.List;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.*;
-
+@Ignore
 public class DefaultPhantomTableReaderTest {
 
     static final List<DataSet> dataSets = new ArrayList<>();

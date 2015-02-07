@@ -68,7 +68,29 @@ public class AccountTest extends SerializationTestCase {
         assertThat(user.getFirstName(), is("Josiah"));
         assertThat(user.getLastName(), is("Haswell"));
         assertThat(user.getAccounts().size(), is(1));
+    }
 
+    @Test
+    public void ensureAccountWithMultipleUserAddedIsSerializedCorrectly() {
+        Account account = new Account();
+        User user1 = new User();
+        user1.setFirstName("Josiah");
+        user1.setLastName("Haswell");
+        user1.setEmailAddress("josiah.haswell@gmail.com");
+        account.addUser(user1);
+
+        User user2 = new User();
+        user2.setFirstName("Lisa");
+        user2.setLastName("Gumerman");
+        user2.setEmailAddress("lisa.gumerman@gmail.com");
+        account.addUser(user2);
+
+        Account copy = copy(account);
+        assertThat(copy.getUsers().size(),is(2));
+
+
+        assertTrue(copy.getUsers().contains(user1));
+        assertTrue(copy.getUsers().contains(user2));
 
     }
 

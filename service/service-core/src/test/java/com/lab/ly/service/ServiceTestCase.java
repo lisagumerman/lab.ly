@@ -2,6 +2,8 @@ package com.lab.ly.service;
 
 import com.lab.ly.FileUploadService;
 import com.lab.ly.PersistenceTestCase;
+import com.lab.ly.configuration.services.ServiceTestConfiguration;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
@@ -21,7 +23,9 @@ import static org.junit.Assert.assertThat;
 
 @Transactional
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = ServiceTestConfiguration.class)
+@ContextConfiguration(classes = {
+        ServiceTestConfiguration.class
+})
 public class ServiceTestCase extends PersistenceTestCase {
 
     @Inject

@@ -12,7 +12,7 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>com.lab.ly.service.ServiceConfiguration</param-value>
+        <param-value>com.lab.ly.configuration.services.ServiceConfiguration</param-value>
     </context-param>
     <!--<context-param>-->
         <!--<param-name>resteasy.resources</param-name>-->

@@ -17,19 +17,10 @@ public class TableTest extends SerializationTestCase {
 
     @Test
     public void ensureListOfListIsSerializedCorrectly() {
-        final List<String> items = Arrays.asList("1", "2", "3");
-        System.out.println(marshal(new MappedList<>(items)));
     }
 
     @Test
     public void ensureTableIsSerializedCorrectly() {
-        final Table table = new Table();
-        table.setDraw(1);
-//        final MappedList values = new MappedList(
-//                Arrays.asList("1", 1, new Object())
-//        );
-//        table.setData(values);
-//        System.out.println(marshal(table));
 
     }
 

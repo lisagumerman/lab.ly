@@ -31,6 +31,10 @@ public class User implements Entity<Long, String> {
     @Column(name = "last_name")
     private String lastName;
 
+    @Basic
+    @Column(name = "email_address")
+    private String emailAddress;
+
     @ManyToMany(mappedBy = "users")
     @XmlInverseReference(mappedBy = "users")
     private Set<Account> accounts = new LinkedHashSet<>();
@@ -44,7 +48,7 @@ public class User implements Entity<Long, String> {
 
     @Override
     public String getKey() {
-        return firstName + lastName;
+        return emailAddress;
     }
 
     @Override
@@ -54,7 +58,7 @@ public class User implements Entity<Long, String> {
 
     @Override
     public EntityCoordinate<Long, String> getCoordinate() {
-        return new EntityCoordinate<>(id, firstName);
+        return new EntityCoordinate<>(id, getKey());
     }
 
     public void setId(Long id) {
@@ -90,5 +94,41 @@ public class User implements Entity<Long, String> {
             return accounts.add(account);
         }
         return false;
+    }
+
+    public String getEmailAddress() {
+        return emailAddress;
+    }
+
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (emailAddress != null ? !emailAddress.equals(user.emailAddress) : user.emailAddress != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return emailAddress != null ? emailAddress.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", emailAddress='" + emailAddress + '\'' +
+                ", accounts=" + accounts +
+                '}';
     }
 }

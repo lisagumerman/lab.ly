@@ -45,21 +45,17 @@ public class AccountPersistenceTest extends PersistenceTestCase {
                 account.getId()
         ).getName(),
                 is("joe's test account"));
-
     }
 
     @Test
     public void ensureAccountCanHaveUserAdded() {
-
         Account account = new Account("test account");
         User user = new User();
         user.setFirstName("Test");
         user.setLastName("User");
         account.addUser(user);
         entityManager.persist(account);
-
         assertNotNull(account.getId());
         assertNotNull(user.getId());
     }
-
 }

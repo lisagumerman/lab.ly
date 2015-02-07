@@ -3,6 +3,7 @@ package io.lably;
 import com.github.jarlakxen.embedphantomjs.ExecutionTimeout;
 import com.github.jarlakxen.embedphantomjs.PhantomJSReference;
 import com.github.jarlakxen.embedphantomjs.executor.PhantomJSFileExecutor;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
@@ -13,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by haswell on 1/31/15.
  */
+@Ignore
 public class EmbeddedPhantomJsTest {
 
     @Test

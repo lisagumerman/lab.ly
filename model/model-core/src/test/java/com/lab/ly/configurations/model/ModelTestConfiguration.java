@@ -1,15 +1,16 @@
-package com.lab.ly;
+package com.lab.ly.configurations.model;
 
-import com.lab.ly.model.ModelConfiguration;
+import com.lab.ly.configurations.model.ModelConfiguration;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
-import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.context.annotation.Primary;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
+import javax.inject.Named;
 import javax.inject.Singleton;
 import javax.sql.DataSource;
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.Properties;
 public class ModelTestConfiguration {
 
     @Bean
+    @Primary
     public DataSource dataSource(final Properties persistenceProperties) {
         final HikariConfig config = getConfigurationFromProperties(persistenceProperties);
         return new HikariDataSource(config);
@@ -35,6 +37,23 @@ public class ModelTestConfiguration {
         adapter.setGenerateDdl(false);
         return adapter;
     }
+
+    @Bean
+    @Singleton
+    @Named("migrationLocation")
+    public String migrationLocation() {
+        return "db.migrations.hsqldb";
+    }
+
+    @Bean
+    @Singleton
+    @Named("migrationTableName")
+    public String migrationTableName() {
+        return "lably_migrations";
+    }
+
+
+
 
     @Bean
     public Properties persistenceProperties() throws IOException {
@@ -79,14 +98,6 @@ public class ModelTestConfiguration {
     }
 
 
-    @Singleton
-    @Bean(initMethod = "migrate")
-    public Flyway migrator(DataSource dataSource) {
-        Flyway flyway = new Flyway();
-        flyway.setLocations("db.migrations.hsqldb");
-        flyway.setDataSource(dataSource);
-        return flyway;
-    }
 
 
     private void loadJdbcDriver(

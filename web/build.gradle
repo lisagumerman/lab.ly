@@ -31,6 +31,7 @@ dependencies {
     compile 'org.jboss.resteasy:resteasy-cdi:3.0.10.Final'
     compile 'org.jboss.resteasy:resteasy-multipart-provider:3.0.10.Final'
     compile 'org.jboss.resteasy:resteasy-jaxb-provider:3.0.10.Final'
+    compile 'org.jboss.resteasy:resteasy-client:3.0.10.Final'
 //    compile 'com.sun.xml.bind:jaxb-core:2.2.7'
 
     compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.2'
@@ -54,3 +55,7 @@ cargo {
         homeDir = file('/home/haswell/dev/tools/webservers/wildfly/8.2.0.Final')
     }
 }
+
+test.mustRunAfter cargoStartLocal
+cargoStopLocal.mustRunAfter test
+

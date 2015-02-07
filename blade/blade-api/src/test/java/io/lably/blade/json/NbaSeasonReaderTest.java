@@ -1,6 +1,7 @@
 package io.lably.blade.json;
 
 import com.lab.ly.model.DataSet;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.io.BufferedInputStream;
@@ -10,7 +11,7 @@ import java.net.URL;
 import java.util.List;
 
 import static org.junit.Assert.*;
-
+@Ignore
 public class NbaSeasonReaderTest {
 
     @Test
