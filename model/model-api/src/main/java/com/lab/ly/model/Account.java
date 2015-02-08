@@ -20,7 +20,7 @@ public class Account implements Entity<Long, String> {
 
     @Id
     @XmlID
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
@@ -29,9 +29,7 @@ public class Account implements Entity<Long, String> {
     @Column(name = "name")
     private String name;
 
-    @ManyToMany(
-            cascade = CascadeType.ALL
-    )
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "account_users",
         joinColumns = @JoinColumn(

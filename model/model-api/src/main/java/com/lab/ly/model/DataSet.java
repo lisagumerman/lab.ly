@@ -124,6 +124,15 @@ public class DataSet implements Entity<UUID, String> {
         }
     }
 
+    public <T extends Serializable> DataSet addColumn(String header, Column<T> column) {
+        this.columns.put(header, column);
+        return this;
+    }
+
+    public void setKey(final String key) {
+        this.name = key;
+    }
+
     public void setJagged(Boolean jagged) {
         this.jagged = jagged;
     }

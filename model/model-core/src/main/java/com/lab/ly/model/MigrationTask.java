@@ -5,5 +5,9 @@ package com.lab.ly.model;
  */
 public interface MigrationTask {
 
+    String getName();
+
+    void apply(PersistenceContext context);
+
 
 }

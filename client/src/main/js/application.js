@@ -7,6 +7,7 @@ require.config({
         angular: 'lib/angular/angular',
         dropzone: 'lib/dropzone/dropzone',
         'jquery-ui': 'lib/jquery/ui',
+        lodash: 'lib/lodash/lodash',
         interact: 'lib/interact/interact',
         datatables: 'lib/datatables/datatables.js/jquery.dataTables',
         foundation: 'lib/zurb/foundation'
@@ -36,14 +37,16 @@ define([
     'jquery',
     'angular',
     'directives/directives',
-    'controllers/controllers'
+    'controllers/controllers',
+    'services/services'
 ], function(ready,
             $, angular,
-            directives, controllers) {
+            directives, controllers,services) {
 
     var Lably = angular.module('Lably', [
         'Lably.Controllers',
-        'Lably.Directives'
+        'Lably.Directives',
+        'Lably.Services'
     ]);
 
     ready(function() {

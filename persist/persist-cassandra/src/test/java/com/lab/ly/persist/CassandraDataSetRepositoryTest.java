@@ -62,7 +62,8 @@ public class CassandraDataSetRepositoryTest extends CassandraTestCase {
                 .putColumn("firstname", "josiah", null)
                 .putColumn("lastname", "smith", null)
                 .putColumn("address", "555 Elm St", null)
-                .putColumn("age", 30, null);
+                .putColumn("age", 30, null)
+                .putColumn("thing", 22, null);
 
 
         try {

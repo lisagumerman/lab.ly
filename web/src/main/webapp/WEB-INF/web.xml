@@ -12,7 +12,7 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>com.lab.ly.service.ServiceConfiguration</param-value>
+        <param-value>com.lab.ly.configuration.services.ServiceConfiguration</param-value>
     </context-param>
     <!--<context-param>-->
         <!--<param-name>resteasy.resources</param-name>-->
@@ -22,6 +22,11 @@
         <param-name>resteasy.servlet.mapping.prefix</param-name>
         <param-value>/rest</param-value>
     </context-param>
+
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
+
 
     <listener>
         <listener-class>org.jboss.resteasy.plugins.server.servlet.ResteasyBootstrap</listener-class>

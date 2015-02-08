@@ -10,6 +10,8 @@ import javax.ws.rs.FormParam;
  * Time: 4:48 PM
  */
 public class UploadedFile {
+    private String name;
+
     public UploadedFile() {
     }
 
@@ -23,5 +25,14 @@ public class UploadedFile {
     @PartType("application/octet-stream")
     public void setData(byte[] data) {
         this.data = data;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

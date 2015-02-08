@@ -120,6 +120,10 @@ public class Column<T extends Serializable> implements Iterable<T> {
                 '}';
     }
 
+    public List<T> getElements() {
+        return elements;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return elements.iterator();

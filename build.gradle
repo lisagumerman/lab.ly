@@ -12,6 +12,7 @@ defaultTasks = [
         ":shared-config:clean",
         ":shared-config:build",
         "clean",
+        "sharedTestConfiguration",
         "sharedConfiguration",
         "build"
 ]
@@ -19,9 +20,27 @@ defaultTasks = [
 allprojects {
     apply plugin: 'io.spring.dependency-management'
 
+    apply plugin: 'maven'
+
     repositories {
         mavenCentral()
         jcenter()
+        maven {
+            url "http://54.149.121.23:8081/nexus/content/repositories/snapshots/"
+        }
+
+
+    }
+
+
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "http://54.149.121.23:8081/nexus/content/repositories/snapshots/") {
+                    authentication(userName: "deployment", password: "P1llar5-0f-w1nt3r")
+                }
+            }
+        }
     }
 
     dependencyManagement {
@@ -59,6 +78,7 @@ subprojects {
     configurations {
         tests
         sharedConfiguration
+        sharedTestConfiguration
     }
 
     task testArtifact(type:Jar) {
@@ -70,19 +90,31 @@ subprojects {
         tests testArtifact
     }
 
+
     task sharedConfiguration(type:Copy) {
         from {
             project.configurations.sharedConfiguration.collect { zipTree(it)}
+        }
+        into("${project.buildDir}/classes/main")
+        expand(project.properties)
+    }
+
+    task sharedTestConfiguration(type:Copy) {
+        from {
+            project.configurations.sharedTestConfiguration.collect { zipTree(it)}
         }
         into("${project.buildDir}/classes/test")
         expand(project.properties)
     }
 
-    test.mustRunAfter sharedConfiguration
+    test.mustRunAfter sharedTestConfiguration
+
+    build.mustRunAfter sharedConfiguration
 
     defaultTasks = [
             'clean',
             'sharedConfiguration',
+            'sharedTestConfiguration',
             'build'
     ]
 

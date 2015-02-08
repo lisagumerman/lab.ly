@@ -54,6 +54,12 @@ module.exports = function(grunt) {
                     return i + o.replace('.css', '.scss')
                 }
             },
+            lodash: {
+                cwd: 'bower_components/lodash',
+                src: 'lodash.js',
+                dest: 'src/main/js/lib/lodash',
+                expand:true
+            },
             zurb: {
                 cwd: 'bower_components/foundation/scss',
                 src: './**/*.scss',

@@ -1,6 +1,6 @@
 dependencies {
 
-    sharedConfiguration project(":shared-config")
+    sharedTestConfiguration project(":shared-config")
 
 
     testCompile project(":bom:bom-test")

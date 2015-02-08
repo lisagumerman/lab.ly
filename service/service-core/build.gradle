@@ -1,10 +1,9 @@
-apply plugin: 'scala'
-
 
 dependencies {
     compile project(":bom:bom-runtime")
     compile project(":service:service-api")
     compile project(":model:model-core")
+    compile project(":blade:blade-api")
 
     testCompile project(":bom:bom-test")
     testCompile project(

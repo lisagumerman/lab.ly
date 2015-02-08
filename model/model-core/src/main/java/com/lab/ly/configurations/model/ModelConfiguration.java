@@ -1,13 +1,20 @@
-package com.lab.ly.model;
+package com.lab.ly.configurations.model;
 
+import com.lab.ly.model.MigrationManager;
+import com.lab.ly.model.PersistenceContext;
+import com.lab.ly.model.internal.DatabaseMigrationTask;
+import com.lab.ly.model.internal.DefaultMigrationManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.inject.Named;
+import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -37,6 +44,13 @@ public class ModelConfiguration {
         return bean;
     }
 
+    @Bean
+    public JpaVendorAdapter vendorAdapter() {
+        final HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setGenerateDdl(false);
+        return adapter;
+    }
+
 
     @Bean
     public EntityManager entityManager(
@@ -55,6 +69,37 @@ public class ModelConfiguration {
     @Bean
     public PersistenceContext defaultPersistenceContext(DataSource dataSource) {
         return new PersistenceContext(dataSource);
+    }
+
+
+    @Bean
+    @Singleton
+    @Named("migrationLocation")
+    public String migrationLocation() {
+        return "db.migrations.postgres";
+    }
+
+    @Bean
+    @Singleton
+    @Named("migrationTableName")
+    public String migrationTableName() {
+        return "lably_migrations";
+    }
+
+    @Bean
+    @Singleton
+    public MigrationManager migrationManager(
+            @Named("migrationLocation") String migrationLocation,
+            @Named("migrationTableName") String migrationTableName,
+            PersistenceContext context
+    ) {
+        MigrationManager manager = new DefaultMigrationManager();
+        manager.registerTask(new DatabaseMigrationTask(
+                migrationLocation,
+                migrationTableName
+        ));
+        manager.apply(context);
+        return manager;
     }
 
 
