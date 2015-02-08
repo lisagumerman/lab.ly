@@ -20,10 +20,13 @@ repositories {
 
 configurations {
     provided
+    site
 }
 
 dependencies {
     sharedConfiguration project(":shared-config")
+
+    site 'io.lably:lably-marketing:1.0.0-SNAPSHOT'
     compile 'org.springframework:spring-web'
     compile 'org.springframework:spring-context'
     compile 'org.springframework:spring-beans'
@@ -33,6 +36,8 @@ dependencies {
     compile 'org.jboss.resteasy:resteasy-multipart-provider:3.0.10.Final'
     compile 'org.jboss.resteasy:resteasy-jaxb-provider:3.0.10.Final'
     compile 'org.jboss.resteasy:resteasy-client:3.0.10.Final'
+
+
 //    compile 'com.sun.xml.bind:jaxb-core:2.2.7'
 
     compile 'org.eclipse.persistence:org.eclipse.persistence.moxy:2.5.2'
@@ -57,6 +62,23 @@ cargo {
     }
 }
 
+task explode(type: Copy) {
+    configurations.site.asFileTree.each {
+        from( zipTree(it) )
+    }
+    into file("${project.buildDir}/site/")
+}
+
+war {
+    from "${project.buildDir}/site"
+}
+
+war.mustRunAfter explode
+
+
 test.mustRunAfter cargoStartLocal
 cargoStopLocal.mustRunAfter test
+
+
+
 
