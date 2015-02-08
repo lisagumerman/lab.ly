@@ -70,7 +70,6 @@ public class CassandraDataSetRepositoryTest extends CassandraTestCase {
 
     @Test
     public void ensureSavingLargeDataSetWorks() {
-
         DataSet dataSet = new DelimitedFileReader(',').read(
                 new InputStreamReader(ClassLoader.getSystemResourceAsStream("datasets/csv/big.csv")));
         long t1 = System.currentTimeMillis();
@@ -81,12 +80,16 @@ public class CassandraDataSetRepositoryTest extends CassandraTestCase {
                 account,
                 dataSet, "test_dataset4");
         assertThat(descriptor.getName(), is("test_dataset4"));
-
         long t2 = System.currentTimeMillis();
-
         System.out.println("Saved 5554 rows in " + (t2 - t1) + " milliseconds");
+    }
+
+
+    @Test
+    public void ensureSavingDataSetAndRetrievingByColumnWorks() {
 
     }
+
 
     @Test
     @Rollback
