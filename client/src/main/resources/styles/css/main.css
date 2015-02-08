@@ -3610,12 +3610,6 @@ footer a {
   clear: both;
   content: '';
 }
-.widget#upload {
-  width: 300px;
-}
-.widget#upload .widget-header h2 {
-  width: 100%;
-}
 .widget .widget-body {
   clear: both;
   content: '';
@@ -3670,37 +3664,20 @@ footer a {
   padding-top: 5px;
   font-size: .75em;
 }
+.widget#upload {
+  width: 300px;
+  cursor: pointer;
+  border: 2px solid #92b35a;
+  background-color: #ccdbb1;
+}
+.widget#upload .widget-header h2 {
+  width: 100%;
+}
 
 .joyride-content-wrapper, .tooltip, .menu {
   -webkit-box-shadow: 0 0 12.5px 0 rgba(22, 22, 22, 0.7);
   -moz-box-shadow: 0 0 12.5px 0 rgba(22, 22, 22, 0.7);
   box-shadow: 0 0 12.5px 0 rgba(22, 22, 22, 0.7);
-}
-
-input, select, textarea {
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  margin: 0;
-  line-height: 1.1em;
-  -webkit-margin-before: 0em;
-  -webkit-margin-after: 0em;
-  padding: 0;
-  border: 1px solid #161616;
-  background-color: #ccdbb1;
-  padding: 2px;
-}
-
-input[type="radio"], input[type="checkbox"] {
-  width: 1em;
-  height: 1em;
-}
-
-span.error {
-  color: #b23654;
-}
-
-.sidenote {
-  font-size: .75em;
 }
 
 #tab-holder {
@@ -3725,9 +3702,8 @@ span.error {
   display: inline-block;
 }
 #tab-holder ul.tabs li {
-  border-width: 1px;
-  border-style: solid;
-  border-color: #92b35a #161616 #161616;
+  border: 1px solid #161616;
+  border-top-color: #92b35a;
   margin-right: 2px;
 }
 #tab-holder ul.tabs li a {
@@ -3741,6 +3717,77 @@ span.error {
 }
 #tab-holder #save-notification {
   font-size: .75em;
+}
+
+input, button, textarea, select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  line-height: inherit;
+  font-family: inherit;
+  margin: 0;
+  line-height: 1.1em;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
+  padding: 0;
+  border: 1px solid #161616;
+  background-color: #ccdbb1;
+  padding: 5px;
+  vertical-align: middle;
+  font-family: inherit;
+}
+
+input[type="radio"], input[type="checkbox"] {
+  width: 1em;
+  height: 1em;
+}
+
+label, input[type="text"], input[type="email"] {
+  display: inline-block;
+}
+
+span.error {
+  color: #b23654;
+}
+
+input[type="submit"] {
+  border: 0;
+  font-size: 1.25em;
+  cursor: pointer;
+  color: #92b35a;
+}
+input[type="submit"]:before {
+  content: '[';
+}
+input[type="submit"]:after {
+  content: ']';
+}
+
+.sidenote {
+  font-size: .75em;
+}
+
+.dz-success-mark, .dz-error-mark {
+  display: inline;
+}
+
+.dz-error-message {
+  color: #b23654;
+}
+
+.green {
+  color: #92b35a;
+}
+
+.manage .workspace {
+  background: #92b35a;
+  bottom: 0;
+}
+.manage #tab-holder {
+  display: none;
+}
+.manage h2 {
+  font-size: 40pt;
 }
 
 /*# sourceMappingURL=main.css.map */

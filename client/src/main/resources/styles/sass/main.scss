@@ -55,13 +55,7 @@ footer {@include cleanup;bottom:0;left:0; width:$navwidth; color:$white; padding
     }
     &:after {  @include clear; }
   }
-
-  &#upload { width:300px;
-    .widget-header h2 {width:100%;}
-  }
-
   .widget-body { @include clear; }
-
   table.dataTable {
     thead, tbody {
       th, td {padding: 3px;border-bottom:1px solid teal}
@@ -78,11 +72,12 @@ footer {@include cleanup;bottom:0;left:0; width:$navwidth; color:$white; padding
   .dataTables_wrapper .dataTables_paginate .paginate_button, .dataTables_wrapper .dataTables_paginate .paginate_button:hover { color:inherit; border:0; padding:0; background:transparent;
     &.current { border:$teal-border; }
   }
-
   .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_paginate {padding-top:5px; font-size:.75em;}
+  &#upload { width:300px; cursor:pointer; border:2px solid $green; background-color:$greenish;
+    .widget-header h2 {width:100%;}
+  }
 }
 
-// look up extending
 //tooltips for menu (just need to fix mouse-in mouse-out), tooltips; joyride for tutorial
 // $include-html-classes: false;
 $tooltip-padding: $squaresize;
@@ -123,17 +118,35 @@ $reveal-modal-class: "reveal-modal";
 $close-reveal-modal-class: "close-reveal-modal";
 .joyride-content-wrapper, .tooltip, .menu {@include shadow(.7)}
 
-
-input, select, textarea { -moz-appearance:none; -webkit-appearance:none; @include cleanup; border:1px solid $black; background-color:$greenish; padding:2px; }
-input[type="radio"], input[type="checkbox"] { width:1em; height:1em; }
-span.error { color:$pink; }
-.sidenote { font-size:.75em; }
-
 #tab-holder { @include expand; @include cleanup; left: $navwidth; top:auto; height:$squaresize*2; background-color:$green; padding-left:$squaresize;
     ul.tabs {display:inline-block;
-      li { border-width:1px; border-style:solid; border-color:$green $black $black; margin-right:2px;
+      li {  border: 1px solid $black;  border-top-color: $green;  margin-right:2px;
         a {padding:2px $squaresize/5*2; height:$squaresize; text-decoration:none; max-width: $squaresize*8;  overflow: hidden;  white-space: nowrap;  text-overflow: ellipsis;}
       }
     }
   #save-notification { font-size:.75em;}
 }
+
+//form styles -- same everywhere
+input, button, textarea, select {@include inputclean; @include cleanup; border:1px solid $black; background-color:$greenish; padding:5px; vertical-align:middle; font-family:inherit;}
+input[type="radio"], input[type="checkbox"] { width:1em; height:1em; }
+label, input[type="text"], input[type="email"] { display:inline-block; }
+span.error { color:$pink; }
+input[type="submit"] { border:0; font-size:1.25em; cursor:pointer; color:$green;
+  &:before {content:'['}
+  &:after {content:']'}
+}
+.sidenote { font-size:.75em; }
+.dz-success-mark, .dz-error-mark {display:inline;}
+.dz-error-message {color:$pink;}
+
+.green {color:$green;}
+
+//"manage" styles
+.manage {
+  .workspace { background:$green; bottom:0; }
+  #tab-holder { display:none; }
+  h2 {font-size:40pt;}
+
+}
+
