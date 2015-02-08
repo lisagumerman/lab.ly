@@ -20,7 +20,10 @@ define([
                     find('table:first-child');
                 $(table).DataTable({
                     lengthChange: false,
-                    searching: false
+                    searching: false,
+                    stripeClasses: [],
+                    responsive:true,
+                    ordering:false
                 });
                 Draggable.apply(element);
                 Resizable.apply(element);

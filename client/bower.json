@@ -23,7 +23,7 @@
     "domready": "~1.0.7",
     "jquery-ui": "~1.11.2",
     "dropzone": "~3.11.1",
-    "interact": "~1.1.2",
+    "interact": "~1.2.2",
     "foundation": "zurb/bower-foundation#~5.5.0",
     "datatables": "~1.10.4"
   }

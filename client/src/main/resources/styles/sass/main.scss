@@ -1,13 +1,14 @@
 @import "libs/foundation/foundation/settings";
-//@import "libs/foundation/foundation/components/joyride";
+@import "libs/foundation/foundation/components/joyride";
 @import "libs/foundation/foundation/components/tabs";
-//@import "libs/foundation/foundation/components/tooltips";
-//@import "libs/foundation/foundation/components/offcanvas";
+@import "libs/foundation/foundation/components/tooltips";
 @import "fonts.scss";
 @import "imports.scss";
 @import "colors.scss";
 @import "format.scss";
 @import "mixins/transformations.scss";
+
+$teal-border: 1px solid $teal;
 
 html, body {  @include cleanup;  width: 100%;  height: 100%;  overflow: hidden;  font-family: $bodyfont;  background-color: $white;  font-size:16px;  }
 
@@ -17,47 +18,111 @@ ul, ol, p { @include cleanup; }
 
 .upload-file {  @include cleanup;  border: 3px dashed $grey;  position: absolute;  top: $squaresize*2;  right: $squaresize*2;  bottom: $squaresize*2;  left: $squaresize*2;  padding:$squaresize;  }
 
-.workspace {  @include gridify($white, $greenish, $gridsize, 1px);  @include expand;  top: $navwidth/2;  left: $navwidth;  }
+.workspace {  @include gridify($white, $greenish, $gridsize, 1px);  @include expand;  top: floor($navwidth/2);  left: $navwidth; bottom:$squaresize*2; }
 
-header {  @include cleanup;  height: $navwidth/2;  left: $navwidth;  position: absolute;  padding: 10px 20px;
+header {  @include cleanup;  height: floor($navwidth/2);  left: $navwidth;  position: absolute; padding-left:$squaresize; z-index:1000;
   h1 {  font-size: 50pt;  font-weight: normal;  display: inline-block;  font-family: $headerfont;  @include cleanup;
     .dot {      color: $green;    }
   }
   #tagline { font-family:$boldfont; }
 }
 
-nav#leftnav {  @include cleanup;  position: fixed;  left: 0px;  width: $navwidth;  background: $black url('../../images/blocks.png') top left no-repeat;  color: $white;  height: 100%;  padding: $navwidth+5px 10px 10px;
-  ul {  @include cleanup;  list-style-type: none;  }
-  a {  color: $white !important;  text-decoration: none;  }
+nav#leftnav {  @include cleanup;  position: fixed;  left: 0px;  width: $navwidth;  background: $black url('../../images/blocks.png') top left no-repeat;  color: $white;  height: 100%;  padding: $navwidth+10px 10px 10px; background-size:contain;
+  ul {  @include cleanup; list-style-type:none;
+    a:before {
+        content: '> ';
+    }
+  }
+  a {  color: $green;  text-decoration: none; }
 }
 
-.widget { @include cleanup;  max-width:750px;  max-height:400px;  padding:$squaresize; background-color:$white; -webkit-box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); box-shadow: 0 0 $squaresize/5 0 rgba($black, .3); margin:$squaresize;
-  .widget-body {  overflow:auto;  width:700px;  height:300px;  }
-  .widget-header {  margin-bottom: $squaresize;
-    h2 {  font-family: $headerfont;  font-size: 25pt;  font-weight: normal;  margin: 0;  width: 80%;  float: left;  }
-    nav {  min-width: 150px;  width: 20%;  float: right;
-      .graph {
-        a {  color: $yellow;  }
-      }
-      .save {
-        a {  color: $teal;  }
-      }
-      .trash {
-        a {  color: $pink;  }
+footer {@include cleanup;bottom:0;left:0; width:$navwidth; color:$white; padding:10px; position:absolute;
+  a {color:$green; text-decoration:none; }
+}
+
+
+.widget { @include cleanup; @include shadow; max-width:700px; min-height:300px; padding:$squaresize; background-color:$white;  margin-left:$squaresize; margin-top:$squaresize; float:left;
+  .widget-header {
+    h2 {  font-family: $headerfont;  font-size: 25pt;  font-weight: normal;  margin: 0;  width:70%; float: left; margin-bottom:15px; }
+    nav {  width:30%; float: left; text-align:right;
+      .graph { color: $yellow;  }
+      .save { color: $teal;  }
+      .trash { color: $pink;  }
+      > a {  padding:0 1px;
+        &:before {content:'['}
+        &:after {content:']'}
       }
     }
-    &:after {  @include clear;
+    &:after {  @include clear; }
+  }
+
+  &#upload { width:300px;
+    .widget-header h2 {width:100%;}
+  }
+
+  .widget-body { @include clear; }
+
+  table.dataTable {
+    thead, tbody {
+      th, td {padding: 3px;border-bottom:1px solid teal}
+      th {background-color: lighten($teal, 40%);}
     }
   }
-  table {  border-collapse: collapse;  width: 100%;
-    td, th {  border: 1px solid $teal;  padding: 2px;  max-width: 100px;  overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap;  height: $squaresize;  }
-    th {  padding-right: 15px;
-      &.graphable:after {  width: 0;  height: 0;  border-left: 15px solid transparent;  border-right: 15px solid transparent;  border-bottom: 15px solid $teal;  }
+  table {  border-collapse: collapse;  width: 100%; font-size:14px;
+    td, th {  border: $teal-border;  overflow: hidden;  text-overflow: ellipsis;  white-space: nowrap; padding:3px;}
+    th { background-color:rgba($teal, .5); position:relative;
+      &:after { position:absolute; content:''; width: 0;  height: 0;  border-left: 15px solid transparent;  border-top: 15px solid $teal; top:0; right:0; cursor:pointer; }
     }
     td {  font-size: .9em;  }
-    tr:last-child td {  border: 1px solid rgba($teal, .5);  }
   }
+  .dataTables_wrapper .dataTables_paginate .paginate_button, .dataTables_wrapper .dataTables_paginate .paginate_button:hover { color:inherit; border:0; padding:0; background:transparent;
+    &.current { border:$teal-border; }
+  }
+
+  .dataTables_wrapper .dataTables_info, .dataTables_wrapper .dataTables_paginate {padding-top:5px; font-size:.75em;}
 }
+
+// look up extending
+//tooltips for menu (just need to fix mouse-in mouse-out), tooltips; joyride for tutorial
+// $include-html-classes: false;
+$tooltip-padding: $squaresize;
+$tooltip-bg: $whiter;
+$tooltip-font-size: inherit;
+$tooltip-font-weight: inherit;
+$tooltip-font-color: $white;
+$tooltip-line-height: 1.3;
+$tooltip-close-font-size: inherit;
+$tooltip-close-font-weight: inherit;
+$tooltip-close-font-color: $black;
+$tooltip-font-size-sml: inherit;
+$tooltip-pip-size: 10px;
+$tooltip-max-width: 300px;
+$joyride-tip-bg: $tooltip-bg;
+$joyride-tip-default-width: 300px;
+$joyride-tip-padding: $tooltip-padding;
+$joyride-tip-border: none;
+$joyride-tip-position-offset: 22px;
+$joyride-tip-font-color: $black;
+$joyride-tip-font-size: inherit;
+$joyride-tip-header-weight: inherit;
+$joyride-tip-nub-size: $tooltip-pip-size;
+$joyride-tip-close-color: $green;
+$joyride-screenfill: none;
+$reveal-modal-bg: $whitest;
+$reveal-position-top:$navwidth;
+$reveal-default-width: 80%;
+$reveal-max-width: $row-width;
+$reveal-modal-padding: $tooltip-padding;
+$reveal-box-shadow: 0 0 $squaresize/2 rgba($black,.7);
+$reveal-close-font-size: inherit;
+$reveal-close-top: 0;
+$reveal-close-side: 0;
+$reveal-close-color: $black;
+$reveal-border-width: 0;
+$reveal-modal-class: "reveal-modal";
+$close-reveal-modal-class: "close-reveal-modal";
+.joyride-content-wrapper, .tooltip, .menu {@include shadow(.7)}
+
 
 input, select, textarea { -moz-appearance:none; -webkit-appearance:none; @include cleanup; border:1px solid $black; background-color:$greenish; padding:2px; }
 input[type="radio"], input[type="checkbox"] { width:1em; height:1em; }

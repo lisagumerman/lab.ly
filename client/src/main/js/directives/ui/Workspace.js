@@ -13,6 +13,7 @@ define([
             replace: 'false',
             link: function (scope, element, attributes) {
 
+                //$(document).foundation();
                 //var dz = $(element).find('.upload-file:first')[0];
                 //var el = $(element).find(".workspace-content:first")[0];
                 //

@@ -8,7 +8,8 @@ require.config({
         dropzone: 'lib/dropzone/dropzone',
         'jquery-ui': 'lib/jquery/ui',
         interact: 'lib/interact/interact',
-        datatables: 'lib/datatables/datatables.js/jquery.dataTables'
+        datatables: 'lib/datatables/datatables.js/jquery.dataTables',
+        foundation: 'lib/zurb/foundation'
     },
 
     shim: {
