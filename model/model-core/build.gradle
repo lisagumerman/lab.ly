@@ -7,6 +7,11 @@ dependencies {
     compile project(":bom:bom-runtime")
     testCompile project(":bom:bom-test")
 
+    testCompile project(
+            path: 'model:model-api',
+            configuration: 'tests'
+    )
+
 }
 
 

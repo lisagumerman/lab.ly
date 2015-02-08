@@ -1,7 +1,10 @@
 package com.lab.ly.service;
 
+import com.lab.ly.model.internal.EmailSignup;
+
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
+import java.util.List;
 
 /**
  * Created by haswell on 2/7/15.
@@ -21,4 +24,10 @@ public interface EmailSignupService {
         @GET
         @Path("/{email}")
         public String save(@PathParam("email") String emailAddress);
+
+        @GET
+        @Path("/")
+        public List<EmailSignup> getSignups();
+
+
 }

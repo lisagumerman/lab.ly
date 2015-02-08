@@ -35,7 +35,12 @@ public class CassandraDataSetRepositoryTest extends CassandraTestCase {
     @Inject
     private Keyspace keyspace;
 
+    @Test
+    public void ensureSavingAccountWithDataSetProducesExpectedResults() {
 
+
+
+    }
 
     @Test
     public void ensureCanCreateKeyspace() throws ConnectionException {

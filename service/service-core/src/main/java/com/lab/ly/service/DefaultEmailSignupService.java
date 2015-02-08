@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
  * Created by haswell on 2/7/15.
@@ -23,5 +24,12 @@ public class DefaultEmailSignupService implements EmailSignupService {
         signup.setEmailAddress(emailAddress);
         entityManager.persist(signup);
         return "Successfully registered email address";
+    }
+
+    @Override
+    public List<EmailSignup> getSignups() {
+        return entityManager.createQuery(
+                "select signup from EmailSignup signup",
+                EmailSignup.class).getResultList();
     }
 }
