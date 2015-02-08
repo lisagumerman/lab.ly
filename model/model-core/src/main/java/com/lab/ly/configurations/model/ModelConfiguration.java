@@ -61,8 +61,7 @@ public class ModelConfiguration {
 
     @Bean
     public PlatformTransactionManager platformTransactionManager(
-            EntityManagerFactory factory
-    ) {
+            EntityManagerFactory factory) {
         return new JpaTransactionManager(factory);
     }
 

@@ -11,6 +11,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Created by haswell on 1/24/15.
+ *
+ * This class maps a human-readable column name to a column definition in Cassandra.
+ *
  */
 @Embeddable
 @XmlRootElement

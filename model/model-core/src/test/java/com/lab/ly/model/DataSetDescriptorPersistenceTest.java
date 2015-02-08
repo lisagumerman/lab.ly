@@ -15,6 +15,7 @@ import static org.junit.Assert.assertThat;
  * Created by haswell on 1/24/15.
  */
 public class DataSetDescriptorPersistenceTest extends PersistenceTestCase {
+
     @javax.persistence.PersistenceContext
     private EntityManager deletionEntityManager;
 

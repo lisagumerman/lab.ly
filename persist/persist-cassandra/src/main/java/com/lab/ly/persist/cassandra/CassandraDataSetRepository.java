@@ -2,9 +2,7 @@ package com.lab.ly.persist.cassandra;
 
 import com.lab.ly.DataSetRepository;
 import com.lab.ly.model.*;
-import com.lab.ly.model.io.UploadedFile;
-import com.lab.ly.model.util.DataSets;
-import com.lab.ly.persist.NamingStrategy;
+import com.lab.ly.model.Column;
 import com.netflix.astyanax.ColumnListMutation;
 import com.netflix.astyanax.Keyspace;
 import com.netflix.astyanax.MutationBatch;
@@ -12,95 +10,119 @@ import com.netflix.astyanax.connectionpool.exceptions.ConnectionException;
 import com.netflix.astyanax.model.ColumnFamily;
 import com.netflix.astyanax.serializers.StringSerializer;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.awt.datatransfer.StringSelection;
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.UUID;
 
 /**
  * Created by haswell on 1/17/15.
  */
 @Repository
+@Transactional
 @Named("cassandra-repository")
 public class CassandraDataSetRepository implements DataSetRepository {
 
     @Inject
     private Keyspace keyspace;
 
-    @Inject
-    private NamingStrategy namingStrategy;
+    @javax.persistence.PersistenceContext
+    private EntityManager entityManager;
 
     @Override
-    public DataSetDescriptor save(DataSet dataSet) {
+    public DataSetDescriptor save(
+            Account account,
+            DataSet dataSet,
+            String name) {
+        try {
+            final DataSetDescriptor descriptor =
+                    extractDescriptor(dataSet, name, account);
+            account.addDataSet(descriptor);
+            entityManager.merge(account);
+            return descriptor;
+        } catch(Exception ex) {
+            throw new InvalidDataSetException(ex);
+        }
+    }
+
+
+    @Override
+    public Set<DataSetDescriptor> list(Account account) {
+        return new LinkedHashSet<>(entityManager.createQuery(
+                "select descriptor from " +
+                        "DataSetDescriptor descriptor " +
+                        "where descriptor.owner.id = :id",
+                DataSetDescriptor.class).setParameter("id", account.getId())
+                .getResultList());
+    }
+
+    @Override
+    public <T extends Serializable> Column<T> getColumn(Account account, String name) {
         return null;
     }
 
-    @Override
-    public DataSetDescriptor save(UploadedFile file) {
-        final DataSet dataSet = DataSets.from(file);
-        final DataSetDescriptor descriptor = convertToDescriptor(dataSet);
-        saveDataSet(dataSet, descriptor);
-        return descriptor;
+
+    private DataSetDescriptor extractDescriptor(DataSet dataSet, String name, Account account) throws ConnectionException {
+        DataSetDescriptor result = new DataSetDescriptor();
+        result.setName(name);
+        int index = 0;
+        addDefinitions(dataSet, result, index);
+        saveDataSetToCassandra(dataSet, result, account);
+
+        return result;
     }
 
-    private void saveDataSet(DataSet dataSet, DataSetDescriptor descriptor) {
-        final ColumnFamily<String, String> columnFamily = createColumnFamily(
-                namingStrategy.getName(dataSet.getKey()));
-        saveToColumnFamily(dataSet, descriptor, columnFamily);
-
-    }
-
-    private void saveToColumnFamily(
+    private void saveDataSetToCassandra(
             DataSet dataSet,
-            DataSetDescriptor descriptor,
-            ColumnFamily<String, String> columnFamily) {
-        final MutationBatch mutationBatch = keyspace.prepareMutationBatch();
-        for(ColumnDefinition definition :  descriptor.getColumnDefinitions()) {
-            final Column<String> column = dataSet.getColumn(definition.getName());
-            final String columnName = String.valueOf(definition.getIndex());
-            save(mutationBatch, column, columnName, columnFamily, namingStrategy.getName(dataSet.getKey()));
-        }
+            DataSetDescriptor result,
+            Account account) throws ConnectionException {
+        ColumnFamily<String, String> columnFamily =
+                new ColumnFamily<>(
+                        result.getName(),
+                        StringSerializer.get(),
+                        StringSerializer.get()
+                );
+        keyspace.createColumnFamily(columnFamily, null);
 
-
-
+        saveData(columnFamily, dataSet, result);
     }
 
-    private void save(
-            MutationBatch mutationBatch,
-            Column<String> column,
-            String columnName,
+    private void saveData(
             ColumnFamily<String, String> columnFamily,
-            String rowKey) {
-        final ColumnListMutation<String> mutation =
-                mutationBatch.withRow(columnFamily, rowKey);
-        for(String element : column) {
+            DataSet dataSet,
+            DataSetDescriptor result) throws ConnectionException {
+        final MutationBatch batch = keyspace.prepareMutationBatch();
+        final String datasetName = result.getKey();
+        ColumnListMutation<String> stringColumnListMutation =
+                batch.withRow(columnFamily, datasetName);
+        for(ColumnDefinition columnDefinition : result.getColumnDefinitions()) {
+            saveColumn(dataSet, stringColumnListMutation, columnDefinition);
+        }
+        batch.execute();
+    }
 
+    private void saveColumn(DataSet dataSet, ColumnListMutation<String> stringColumnListMutation, ColumnDefinition columnDefinition) {
+        final String columnName = String.valueOf(columnDefinition.getIndex());
+        final Column<String> column = dataSet.getColumn(columnDefinition.getName());
+        for(String rowValue : column) {
+            stringColumnListMutation.putColumn(columnName, rowValue, null);
         }
     }
 
-    private ColumnFamily<String, String> createColumnFamily(String name) {
-        final ColumnFamily<String, String> cf = new ColumnFamily<>(name,
-                StringSerializer.get(),
-                StringSerializer.get());
-        try {
-            keyspace.createColumnFamily(cf, null);
-            return cf;
-        } catch (ConnectionException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    private DataSetDescriptor convertToDescriptor(DataSet dataSet) {
-        final DataSetDescriptor descriptor = new DataSetDescriptor();
-        int count = 0;
-
+    private void addDefinitions(DataSet dataSet, DataSetDescriptor result, int index) {
         for(String header : dataSet.getHeaders()) {
-            descriptor.addColumn(
-                    new ColumnDefinition(ColumnType.String, header, count++));
+            final ColumnDefinition definition = new ColumnDefinition(
+                    ColumnType.String,
+                    header,
+                    index++
+            );
+            result.setKey("c" + UUID.randomUUID().toString().replaceAll("-", "_"));
+            result.addColumn(definition);
         }
-        dataSet.setKey(descriptor.getKey());
-        return descriptor;
     }
-
-
 }

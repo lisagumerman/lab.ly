@@ -68,7 +68,6 @@ public class DataSetDescriptor implements Entity<Long, String> {
     }
 
 
-
     public void setOwner(Account owner) {
         this.owner = owner;
     }

@@ -2,8 +2,10 @@ package com.lab.ly.persist;
 
 
 import com.lab.ly.DataSetRepository;
-import com.lab.ly.model.Column;
+import com.lab.ly.model.Account;
 import com.lab.ly.model.DataSet;
+import com.lab.ly.model.DataSetDescriptor;
+import com.lab.ly.persist.csv.DelimitedFileReader;
 import com.netflix.astyanax.Keyspace;
 import com.netflix.astyanax.MutationBatch;
 import com.netflix.astyanax.connectionpool.OperationResult;
@@ -12,34 +14,98 @@ import com.netflix.astyanax.model.ColumnFamily;
 import com.netflix.astyanax.model.CqlResult;
 import com.netflix.astyanax.model.Row;
 import com.netflix.astyanax.serializers.StringSerializer;
-import org.cassandraunit.utils.EmbeddedCassandraServerHelper;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
+import org.springframework.test.annotation.Rollback;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import java.io.Serializable;
-import java.security.spec.KeySpec;
-import java.util.Arrays;
-import java.util.UUID;
+import java.io.InputStreamReader;
+import java.io.StringReader;
 
-import static org.junit.Assert.assertNotNull;
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by haswell on 1/17/15.
  */
+@Transactional
 public class CassandraDataSetRepositoryTest extends CassandraTestCase {
 
     @Inject
     private Keyspace keyspace;
 
+    @Inject
+    private DataSetRepository repository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Test
+    @Rollback
     public void ensureSavingAccountWithDataSetProducesExpectedResults() {
+        DataSet dataSet = new DelimitedFileReader(',').read(new StringReader("hello,world\n1,2\n3,4"));
+        Account account = new Account("test-account");
+        DataSetDescriptor descriptor = repository.save(
+                account,
+                dataSet, "test_dataset1");
+        assertThat(descriptor.getName(), is("test_dataset1"));
+    }
+
+    @Test
+    @Rollback
+    public void ensureSavingToExistingAccountWorks() {
+        DataSet dataSet = new DelimitedFileReader(',').read(new StringReader("hello,world\n1,2\n3,4"));
+        final Account account = new Account("test");
+        entityManager.persist(account);
+        entityManager.flush();
+        DataSetDescriptor descriptor = repository.save(
+                account,
+                dataSet, "test_dataset2");
+        assertThat(descriptor.getName(), is("test_dataset2"));
+    }
 
 
+    @Test
+    public void ensureSavingLargeDataSetWorks() {
 
+        DataSet dataSet = new DelimitedFileReader(',').read(
+                new InputStreamReader(ClassLoader.getSystemResourceAsStream("datasets/csv/big.csv")));
+        long t1 = System.currentTimeMillis();
+        final Account account = new Account("test");
+        entityManager.persist(account);
+        entityManager.flush();
+        DataSetDescriptor descriptor = repository.save(
+                account,
+                dataSet, "test_dataset4");
+        assertThat(descriptor.getName(), is("test_dataset4"));
+
+        long t2 = System.currentTimeMillis();
+
+        System.out.println("Saved 5554 rows in " + (t2 - t1) + " milliseconds");
+
+    }
+
+    @Test
+    @Rollback
+    public void ensureSavingToAccountResultsInDataSetBeingAssociatedWithAccount() {
+
+        DataSet dataSet = new DelimitedFileReader(',').read(new StringReader("hello,world\n1,2\n3,4"));
+        final Account account = new Account("test2");
+        entityManager.persist(account);
+        entityManager.flush();
+        DataSetDescriptor descriptor = repository.save(
+                account,
+                dataSet, "test_dataset3");
+        assertThat(descriptor.getName(), is("test_dataset3"));
+        assertThat(repository.list(account).size(), is(1));
+    }
+    
+    @Test
+    public void ensureListingDescriptorsOnAccountProducesExpectedResults() {
+        
     }
 
     @Test

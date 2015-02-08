@@ -1,12 +1,12 @@
 package com.lab.ly;
 
-import com.lab.ly.model.DataSet;
-import com.lab.ly.model.DataSetDescriptor;
-import com.lab.ly.model.EntityCoordinate;
+import com.lab.ly.model.*;
 import com.lab.ly.model.io.UploadedFile;
 import org.springframework.stereotype.Repository;
 
+import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 /**
@@ -15,9 +15,11 @@ import java.util.UUID;
 @Repository
 public interface DataSetRepository {
 
-    public DataSetDescriptor save(DataSet dataSet);
+    DataSetDescriptor save(Account account, DataSet dataSet, String name);
 
-    public DataSetDescriptor save(UploadedFile file);
+    Set<DataSetDescriptor> list(Account account);
+
+    <T extends Serializable> Column<T> getColumn(Account account, String name);
 
 
 }

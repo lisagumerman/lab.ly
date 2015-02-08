@@ -23,6 +23,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.inject.Inject;
 import java.util.logging.Level;
@@ -32,7 +33,9 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertThat;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = CassandraTestConfiguration.class)
+@ContextConfiguration(
+        classes = CassandraTestConfiguration.class)
+@EnableTransactionManagement
 public class CassandraTestCase {
 
 
