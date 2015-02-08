@@ -8,7 +8,7 @@ dependencies {
     testCompile project(":bom:bom-test")
 
     testCompile project(
-            path: 'model:model-api',
+            path: ':model:model-api',
             configuration: 'tests'
     )
 

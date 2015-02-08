@@ -57,7 +57,7 @@ public class Column<T extends Serializable> implements Iterable<T> {
     }
 
     public Column() {
-
+        this.elements = new ArrayList<>();
     }
 
     public T get(int index) {
