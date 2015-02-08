@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Import({
     ModelConfiguration.class
 })
-@ComponentScan(basePackages = "com.lab.ly.service")
+@ComponentScan(
+        basePackages = "com.lab.ly.service"
+)
 @Configuration
 @EnableTransactionManagement
 public class ServiceConfiguration {
