@@ -9,7 +9,8 @@ require.config({
         'jquery-ui': 'lib/jquery/ui',
         lodash: 'lib/lodash/lodash',
         interact: 'lib/interact/interact',
-        datatables: 'lib/datatables/datatables.js/jquery.dataTables'
+        datatables: 'lib/datatables/datatables.js/jquery.dataTables',
+        foundation: 'lib/zurb/foundation'
     },
 
     shim: {

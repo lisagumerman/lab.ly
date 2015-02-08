@@ -14,8 +14,6 @@ define([
         return {
             restrict: 'E',
             replace: 'true',
-            require: '^widget',
-
             templateUrl: 'html/templates/widgets/table.html',
             link:function(scope, element, attributes) {
                 var table = $(element).
@@ -23,9 +21,12 @@ define([
                 $(table).DataTable({
                     lengthChange: false,
                     searching: false,
-                    aaData: scope.data,
-                    aoColumns:scope.columns
+                    stripeClasses: [],
+                    responsive:true,
+                    ordering:false
                 });
+                Draggable.apply(element);
+                Resizable.apply(element);
             }
         };
     }

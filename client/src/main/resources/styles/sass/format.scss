@@ -1,6 +1,8 @@
+@import "colors";
+
 @mixin cleanup {  margin:0; line-height:1.1em; -webkit-margin-before:0em;  -webkit-margin-after:0em; padding:0; }
 
-@mixin clear { clear:both; }
+@mixin clear { clear:both; content:''}
 
 @mixin expand {
   position: absolute;
@@ -11,6 +13,14 @@
   overflow: auto;
 }
 
-$gridsize: 100px;
-$navwidth: $gridsize*2;
-$squaresize: $gridsize/4;
+$squaresize:25px;
+$gridsize: $squaresize*4;
+$navwidth: $squaresize*5;
+
+@mixin shadow($c: .5) {
+  $a: box-shadow;
+  $b: 0 0 $squaresize/2 0 rgba($black, $c);
+  -webkit-#{$a}: $b;
+  -moz-#{$a}: $b;
+  #{$a}: $b;
+}
