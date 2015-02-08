@@ -25,18 +25,10 @@ public class ModelTestConfiguration {
 
     @Bean
     @Primary
-    public DataSource dataSource(final Properties persistenceProperties) {
-        final HikariConfig config = getConfigurationFromProperties(persistenceProperties);
-        return new HikariDataSource(config);
+    public DataSource dataSource() {
+        return DatasourceResolver.resolveDataSource();
     }
 
-
-    @Bean
-    public JpaVendorAdapter vendorAdapter() {
-        final HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
-        adapter.setGenerateDdl(false);
-        return adapter;
-    }
 
     @Bean
     @Singleton
@@ -54,29 +46,6 @@ public class ModelTestConfiguration {
 
 
 
-
-    @Bean
-    public Properties persistenceProperties() throws IOException {
-        final Properties properties = new Properties();
-        properties.load(ClassLoader.getSystemResourceAsStream("persistence.properties"));
-        return properties;
-    }
-
-    private HikariConfig getConfigurationFromProperties(Properties persistenceProperties) {
-        final HikariConfig config = new HikariConfig();
-
-        config.setUsername(persistenceProperties
-                .getProperty("jdbc.username"));
-
-        config.setPassword(persistenceProperties
-                .getProperty("jdbc.username"));
-
-        config.setJdbcUrl(persistenceProperties
-                .getProperty("jdbc.url"));
-
-        loadJdbcDriver(persistenceProperties, config);
-        return config;
-    }
 
     @Bean
     public Properties jpaProperties() {
@@ -98,19 +67,4 @@ public class ModelTestConfiguration {
     }
 
 
-
-
-    private void loadJdbcDriver(
-            Properties persistenceProperties,
-            HikariConfig config) {
-        final String driverClass = (persistenceProperties
-                        .getProperty("jdbc.driverClass"));
-        try {
-            Class.forName(driverClass);
-            config.setDriverClassName(driverClass);
-        } catch (ClassNotFoundException e) {
-            throw new IllegalStateException(e);
-        }
-
-    }
 }

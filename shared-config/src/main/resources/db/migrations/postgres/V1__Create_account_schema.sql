@@ -1,10 +1,10 @@
 create table lably_account (
-  id int serial unique primary key,
+  id serial unique primary key,
   name varchar(255)
 );
 
 create table lably_user (
-  id int serial primary key,
+  id serial primary key,
   first_name varchar(64),
   last_name varchar(64),
   email_address varchar(254)
@@ -18,7 +18,7 @@ create table account_users (
 );
 
 create table email_signup(
-  id int serial primary key,
+  id serial primary key,
   email_address varchar(254)
 );
 

@@ -1,7 +1,6 @@
 
 dependencies {
-
-    sharedConfiguration project(":shared-config")
+    sharedTestConfiguration project(":shared-config")
 
 
     compile project(":model:model-api")

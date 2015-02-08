@@ -23,6 +23,7 @@ configurations {
 }
 
 dependencies {
+    sharedConfiguration project(":shared-config")
     compile 'org.springframework:spring-web'
     compile 'org.springframework:spring-context'
     compile 'org.springframework:spring-beans'

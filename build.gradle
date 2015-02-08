@@ -12,6 +12,7 @@ defaultTasks = [
         ":shared-config:clean",
         ":shared-config:build",
         "clean",
+        "sharedTestConfiguration",
         "sharedConfiguration",
         "build"
 ]
@@ -59,6 +60,7 @@ subprojects {
     configurations {
         tests
         sharedConfiguration
+        sharedTestConfiguration
     }
 
     task testArtifact(type:Jar) {
@@ -70,19 +72,31 @@ subprojects {
         tests testArtifact
     }
 
+
     task sharedConfiguration(type:Copy) {
         from {
             project.configurations.sharedConfiguration.collect { zipTree(it)}
+        }
+        into("${project.buildDir}/classes/main")
+        expand(project.properties)
+    }
+
+    task sharedTestConfiguration(type:Copy) {
+        from {
+            project.configurations.sharedTestConfiguration.collect { zipTree(it)}
         }
         into("${project.buildDir}/classes/test")
         expand(project.properties)
     }
 
-    test.mustRunAfter sharedConfiguration
+    test.mustRunAfter sharedTestConfiguration
+
+    build.mustRunAfter sharedConfiguration
 
     defaultTasks = [
             'clean',
             'sharedConfiguration',
+            'sharedTestConfiguration',
             'build'
     ]
 

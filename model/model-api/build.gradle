@@ -2,5 +2,5 @@
 dependencies {
     compile project(":bom:bom-api")
     compile project(":common:common-core")
-    sharedConfiguration project(":shared-config")
+    sharedTestConfiguration project(":shared-config")
 }

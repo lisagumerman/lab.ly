@@ -1,6 +1,6 @@
 
 create table lably_datasets (
-  id int identity primary key,
+  id serial unique primary key,
   name varchar(64) not null,
   entity_key varchar(64) not null,
   owner_id int not null
