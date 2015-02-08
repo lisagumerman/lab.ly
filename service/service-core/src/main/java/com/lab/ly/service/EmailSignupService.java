@@ -26,8 +26,8 @@ public interface EmailSignupService {
         public String save(@PathParam("email") String emailAddress);
 
         @GET
-        @Path("/")
-        public List<EmailSignup> getSignups();
+        @Path("/list/{password}")
+        public List<EmailSignup> getSignups(@PathParam("password") String password);
 
 
 }

@@ -24,7 +24,14 @@ public class DefaultEmailSignupServiceTest extends ServiceTestCase {
     public void ensureServiceListsSignupsCorrectly() {
         service.save("one@gmail.com");
         service.save("two@gmail.com");
-        assertThat(service.getSignups().size(), is(2));
+        assertThat(service.getSignups(DefaultEmailSignupService.password).size(), is(2));
+    }
+
+    @Test
+    public void ensureServiceReturnsNothingForInvalidPassword() {
+        service.save("one@gmail.com");
+        service.save("two@gmail.com");
+        assertThat(service.getSignups("").size(), is(0));
     }
 
 }

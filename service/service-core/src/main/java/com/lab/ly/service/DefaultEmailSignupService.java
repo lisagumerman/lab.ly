@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -17,6 +18,8 @@ public class DefaultEmailSignupService implements EmailSignupService {
     @PersistenceContext
     private EntityManager entityManager;
 
+    static final String password = "stop-looking-at-my-signups!";
+
 
     @Override
     public String save(String emailAddress) {
@@ -27,7 +30,10 @@ public class DefaultEmailSignupService implements EmailSignupService {
     }
 
     @Override
-    public List<EmailSignup> getSignups() {
+    public List<EmailSignup> getSignups(String password) {
+        if(!DefaultEmailSignupService.password.equals(password)) {
+            return Collections.emptyList();
+        }
         return entityManager.createQuery(
                 "select signup from EmailSignup signup",
                 EmailSignup.class).getResultList();
