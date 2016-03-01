@@ -1,0 +1,7 @@
+
+dependencies {
+    compile project(':api')
+
+    testCompile('org.testng:testng')
+    testCompile('org.hamcrest:hamcrest-core')
+}

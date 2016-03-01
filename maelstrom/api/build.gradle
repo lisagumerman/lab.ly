@@ -1,0 +1,6 @@
+
+
+dependencies {
+    compile 'org.testng:testng'
+    compile 'org.hamcrest:hamcrest-core'
+}

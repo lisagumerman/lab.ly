@@ -1,0 +1,13 @@
+include (
+    'api',
+    'bom',
+    'client',
+    'core',
+    'env',
+    'providers',
+    'test',
+    'transport',
+		'transport:zeromq',
+		'transport:nanomsg',
+		'transport:hornetq'
+)

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="io.hasli.maelstrom.zmq.transport.ZeroMQFrameTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-02-20T22:11:40" hostname="haswelldev" time="0.005">
+  <properties/>
+  <testcase name="ensureWhateverWorks" classname="io.hasli.maelstrom.zmq.transport.ZeroMQFrameTest" time="0.005"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Exception in thread "Thread-7" zmq.ZError$IOException: java.nio.channels.ClosedChannelException
+	at zmq.Signaler.recv(Signaler.java:176)
+	at zmq.Mailbox.recv(Mailbox.java:101)
+	at zmq.SocketBase.processCommands(SocketBase.java:864)
+	at zmq.SocketBase.bind(SocketBase.java:322)
+]]></system-err>
+</testsuite>
